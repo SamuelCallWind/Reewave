@@ -1,0 +1,24 @@
+body {
+    background-color: rgba(12, 25, 42, 0.816);
+    margin: 0;
+}
+
+header {
+    height: 100px;
+    background-color: rgba(7, 14, 24, 0.816);
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+.calendarGrid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 70px 70px 70px 70px 70px 70px 70px;
+}
+
+.box {
+    height: 50px;
+    width: 70px;
+    border: solid black 2px;
+    border-radius: 3px;
+}
