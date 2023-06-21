@@ -5,7 +5,9 @@
 body {
     background-color: rgba(12, 25, 42, 0.816);
     margin: 0;
+    font-family: 'Pacifico', cursive;
 }
+
 
 header {
     height: 100px;
@@ -14,6 +16,7 @@ header {
     justify-content: space-between;
     color: white;
     box-shadow: 0 10px 100px -100px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 0  orange;
 }
 .linksTop {
     display: flex;
@@ -26,7 +29,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin-right: 2vw;
+    margin-right: 5vw;
 }
 .oneBar {
     width: 2em;
@@ -60,16 +63,48 @@ section.calendar{
     cursor: pointer;
     user-select: none;
     box-shadow: 3px 3px 5px rgb(8, 23, 33);
+    text-shadow: 1px 2px orange;
 }
 .boxDay:hover {
     color: black;
     background-color: rgba(240, 248, 255, 0.717);
+    text-shadow: 1px 2px rgb(114, 114, 114);
 }
 
 .sideBarLi {
     list-style: none;
 }
 
+.dayBoxGrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 85%;
+    height: 80%;
+    box-shadow: 2px 2px 5px 0 black;
+    background-color: rgba(39, 41, 48, 0.995);
+    z-index: 1000;
+}
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
+    padding-right: 1px;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #630000c3; /* red */
+    color: white;
+    width: 35px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%; /* make it circular */
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26); /* add a little shadow for 3D effect */
+}
 
 
 
