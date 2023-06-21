@@ -10,15 +10,51 @@ header {
     justify-content: space-between;
     color: white;
 }
+section.calendar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .calendarGrid {
+    margin: 2em;
     display: grid;
     gap: 1rem;
-    grid-template-columns: 70px 70px 70px 70px 70px 70px 70px;
+    grid-template-columns: repeat(7, minmax(0, 200px));
+    grid-template-rows: 12vh 12vh 12vh 12vh 12vh;
+    
 }
 
-.box {
-    height: 50px;
-    width: 70px;
+.boxDay {
+    height: 1fr;
+    width: 1fr;
     border: solid black 2px;
     border-radius: 3px;
+    color: white;
+    font-size: 25px;
+}
+
+.sideBarLi {
+    list-style: none;
+}
+
+
+
+
+@media (max-width: 600px) {
+    .calendarGrid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .boxDay {
+        min-width: 200px;
+        max-width: 200px;
+        min-height: 100px;
+    }
+}
+@media (max-width: 485px) {
+    .calendarGrid {
+        justify-content: center;
+}
 }
