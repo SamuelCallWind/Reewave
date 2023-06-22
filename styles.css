@@ -30,12 +30,18 @@ header {
     flex-direction: column;
     gap: 5px;
     margin-right: 5vw;
+    transition: 0.2s ease-in-out;
+}
+.sideBarButton:hover {
+    background-color: white;
+    border-radius: 5px;
 }
 .oneBar {
     width: 2em;
     background-color: rgb(250, 162, 46);
     height: 0.8vh;
     border-radius: 5px;
+    
 }
 section.calendar{
     display: flex;
@@ -80,9 +86,7 @@ section.calendar{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -45%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
     justify-content: center;
     width: 85%;
     height: 80%;
@@ -110,10 +114,32 @@ section.calendar{
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26); /* add a little shadow for 3D effect */
 }
 .switchButtonOne {
-    margin-top: auto;
-    width: 100px;
-    height: 100px;
-    background-color: white;
+    position: absolute;
+    bottom: 3%;
+    left: 25%;
+    width: 20vw;
+    max-width: 200px;
+    height: 5vh;
+    background: linear-gradient(-45deg,rgba(255, 166, 0, 0.848), rgb(164, 107, 0));
+    border-radius: 2px;
+    -webkit-transform: skew(-20deg); 
+    -moz-transform: skew(-20deg); 
+    -o-transform: skew(-20deg);
+    transform: skew(-20deg);
+}
+.switchButtonTwo {
+    background-color: rgba(7, 14, 24, 0.816);
+    position: absolute;
+    bottom: 3%;
+    right: 25%;
+    width: 20vw;
+    max-width: 200px;
+    height: 5vh;
+    border-radius: 2px;
+    -webkit-transform: skew(-20deg); 
+    -moz-transform: skew(-20deg); 
+    -o-transform: skew(-20deg);
+    transform: skew(-20deg);
 }
 
 h1 {

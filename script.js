@@ -15,7 +15,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         boxTitle.innerHTML = `${currentMonth}  ${e.target.innerHTML}`;
         newBox.appendChild(boxTitle);
         // Adding the two buttons to switch from day and night 
-        // newBox.appendChild(document.createElement('div')).classList.add('switchButtonOne');
+        newBox.appendChild(document.createElement('div')).classList.add('switchButtonOne');
+        newBox.appendChild(document.createElement('div')).classList.add('switchButtonTwo');
          
     }
     function createCloseButton() {
