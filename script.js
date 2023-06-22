@@ -4,25 +4,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let dayBoxes = document.querySelectorAll('.boxDay');
     let calendar = document.querySelector(".calendar");
     let currentMonth = new Date().toLocaleString('default', { month: 'long' });
+    let newBox = document.createElement('div');
 
-    function dayBoxGrow() {
-        let createBox = document.createElement('div');
-        let createClose = document.createElement('div');
-        createClose.addEventListener("click", () => createBox.style.display = 'none');
-        createClose.classList = "closeButton";
-        createClose.innerHTML = '&times;'
-        createBox.classList = "dayBoxGrow";
-        createBox.style.display = "block";
-        createBox.appendChild(createClose);
-        calendar.appendChild(createBox);
-        let createTitle = document.createElement('h1');
-        createTitle.innerHTML = `${currentMonth} / ${i}`;
-        createBox.appendChild(createTitle);
+    function dayBoxGrow(e) {
+        newBox.classList = "dayBoxGrow";
+        newBox.style.display = "block";
+        newBox.appendChild(createCloseButton());
+        calendar.appendChild(newBox);
+        let boxTitle = document.createElement('h1');
+        boxTitle.innerHTML = `${currentMonth}  ${e.target.innerHTML}`;
+        newBox.appendChild(boxTitle);
+        // Adding the two buttons to switch from day and night 
+        // newBox.appendChild(document.createElement('div')).classList.add('switchButtonOne');
+         
+    }
+    function createCloseButton() {
+        let newClose = document.createElement('div');
+        newClose.addEventListener("click", () => {
+            newBox.style.display = 'none';
+            newBox.innerHTML = '';
+        });   
+        newClose.classList = "closeButton";
+        newClose.innerHTML = '&times;'
+        return newClose
     }
 
     for (i = 0; i < daysInMonth; i++) {
         dayBoxes[i].innerHTML = i + 1;
-        dayBoxes[i].addEventListener("click", dayBoxGrow)
+        dayBoxes[i].addEventListener("click", (e) => dayBoxGrow(e));
         
         
     }
