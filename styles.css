@@ -106,6 +106,9 @@ section.calendar{
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26); /* add a little shadow for 3D effect */
 }
 
+h1 {
+    color: white;
+}
 
 
 @media (max-width: 600px) {
