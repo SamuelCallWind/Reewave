@@ -81,8 +81,17 @@ section.calendar{
     list-style: none;
 }
 
-.dayBoxGrow {
+.dayLine {
     position: absolute;
+    left: 10%;
+    bottom: 15%;
+    width: 80%;
+    background-color: white;
+    height: 0.5%;
+}
+
+.dayBoxGrow {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -45%);
@@ -120,7 +129,7 @@ section.calendar{
     width: 20vw;
     max-width: 200px;
     height: 5vh;
-    background: linear-gradient(-45deg,rgba(255, 166, 0, 0.848), rgb(164, 107, 0));
+    background: linear-gradient(rgba(255, 166, 0, 0.848), rgb(187, 121, 0));
     border-radius: 2px;
     -webkit-transform: skew(-20deg); 
     -moz-transform: skew(-20deg); 
