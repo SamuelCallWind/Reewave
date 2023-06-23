@@ -27,14 +27,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newBox.innerHTML = '';
         });   
         newClose.classList = 'closeButton';
-        newClose.innerHTML = '&times;'
-        return newClose
+        newClose.innerHTML = '&times;';
+        return newClose;
     }
     
     function createDayLine(box) {
         let dayLine = document.createElement('div')
         dayLine.classList = 'dayLine';
         newBox.appendChild(dayLine);
+
+        for (i = 0; i < 10; i++) {
+            let verticalLine = document.createElement('div');
+            let hourVerticalLine = document.createElement('p');
+            hourVerticalLine.classList = 'hourVerticalLine';
+            verticalLine.classList = 'verticalLine';
+            verticalLine.style.left = `${i *8.87 + 10}%`;
+            hourVerticalLine.style.left = `${i *8.8 + 8.60}%`;
+            hourVerticalLine.innerHTML = `${i + 8}:00`
+            newBox.appendChild(hourVerticalLine);
+            newBox.appendChild(verticalLine);
+        }
     }
 
     for (i = 0; i < daysInMonth; i++) {
