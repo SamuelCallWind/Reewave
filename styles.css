@@ -169,6 +169,15 @@ section.calendar{
     font-size: 1em;
 }
 
+.addNewButton, .timeActivity {
+    position: absolute;
+    top: 12%;
+    min-width: 40px;
+    min-height: 20px;
+}
+.timeActivity {
+    left: 30%;
+}
 h1 {
     color: white;
     margin-left: 1em;

@@ -37,10 +37,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxData[boxIndex] = newBox.innerHTML;
             });
             newBox.appendChild(saveButton);
+            createSelectActivity()
         }
         calendar.appendChild(newBox);
     
     }
+
+    function createSelectActivity() {
+        let buttonAddActivity = document.createElement('button');
+        buttonAddActivity.innerHTML = 'Add Activity';
+        buttonAddActivity.classList = 'addNewButton';
+        buttonAddActivity.addEventListener('click', () => {
+            let selectElement = newBox.appendChild(document.createElement('select'));
+            selectElement.classList.add('timeActivity')
+            //Make a placeholder for the options 
+            let placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.textContent = 'Select an option';
+            placeholder.disabled = 'true';
+            placeholder.selected = 'true';
+            selectElement.appendChild(placeholder);
+            newBox.appendChild(document.createElement('select')).classList.add('nameActivity');
+        });
+        newBox.appendChild(buttonAddActivity);
+    }
+
     function createCloseButton() {
         newClose.addEventListener('click', () => {
             newBox.style.display = 'none';
