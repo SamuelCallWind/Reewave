@@ -169,14 +169,18 @@ section.calendar{
     font-size: 1em;
 }
 
-.addNewButton, .timeActivity {
+.addNewButton {
     position: absolute;
     top: 12%;
+    left: 2%;
     min-width: 40px;
     min-height: 20px;
 }
-.timeActivity {
-    left: 30%;
+#durationActivity, #selectTimeActivity, #inputActivity {
+    width: 12vw;
+    font-size: 0.8em;
+    min-height: 15px;
+    margin: 2%;
 }
 h1 {
     color: white;

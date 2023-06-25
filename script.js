@@ -54,13 +54,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let selectElementTwo = newBox.appendChild(document.createElement('select'));
                 let inputElement = newBox.appendChild(document.createElement('input'));
                 
-                inputElement.classList.add('inputActivity');
-                selectElementOne.classList.add('durationActivity');
-                selectElementTwo.classList.add('selectTimeActivity');
-                //Make a placeholder for the options 
-                let listOption = ['Option1', 'Option2', 'Option3', 'Option4' ]
-                createPlaceholder(selectElementOne);
-                createPlaceholder(selectElementTwo);
+                inputElement.id = 'inputActivity';
+                selectElementOne.id  = 'durationActivity';
+                selectElementTwo.id = 'selectTimeActivity';
+                
+                //calling functions to create a placeholder for the options & options
+                createPlaceholder(selectElementOne, 'Select the length of activity');
+                addOptionToSelect('durationActivity', '15 minutes', '30 minutes', '1 Hour', '2 Hours', '3 Hours', '4 Hours', '5 Hours', '6 Hours', '7 Hours', '8 Hours');
+                
+                createPlaceholder(selectElementTwo, 'Select the time of activity');
+                addOptionToSelect('selectTimeActivity', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00');
                 isActive = true;
             } else {
 
@@ -86,7 +89,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         dayLine.classList = 'dayLine';
         newBox.appendChild(dayLine);
 
-        for (i = 0; i < 13; i++) {
+        for (let i = 0; i < 13; i++) {
             let verticalLine = document.createElement('div');
             let hourVerticalLine = document.createElement('p');
             hourVerticalLine.classList = `hourVerticalLine hour${i+8}`;
@@ -105,13 +108,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
         
     }
 
-    function createPlaceholder(mainBox) {
+    function createPlaceholder(mainBox, textPlaceholder) {
         let placeholder = document.createElement('option');
         placeholder.value = '';
-        placeholder.textContent = 'Select an option';
+        placeholder.textContent = textPlaceholder;
         placeholder.disabled = 'true';
         placeholder.selected = 'true';
         mainBox.appendChild(placeholder);
+    }
+
+
+    function addOptionToSelect(elementID, ...options) {
+        let selectElementID = document.getElementById(elementID);
+            
+        for (let i = 0; i < options.length; i++) {
+            let option = document.createElement('option');
+            option.textContent = options[i];
+            selectElementID.appendChild(option);
+        }
     }
 
     
