@@ -47,17 +47,26 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let buttonAddActivity = document.createElement('button');
         buttonAddActivity.innerHTML = 'Add Activity';
         buttonAddActivity.classList = 'addNewButton';
+        let isActive = false;
         buttonAddActivity.addEventListener('click', () => {
-            let selectElement = newBox.appendChild(document.createElement('select'));
-            selectElement.classList.add('timeActivity')
-            //Make a placeholder for the options 
-            let placeholder = document.createElement('option');
-            placeholder.value = '';
-            placeholder.textContent = 'Select an option';
-            placeholder.disabled = 'true';
-            placeholder.selected = 'true';
-            selectElement.appendChild(placeholder);
-            newBox.appendChild(document.createElement('select')).classList.add('nameActivity');
+            if (!isActive) {
+                let selectElementOne = newBox.appendChild(document.createElement('select'));
+                let selectElementTwo = newBox.appendChild(document.createElement('select'));
+                let inputElement = newBox.appendChild(document.createElement('input'));
+                
+                inputElement.classList.add('inputActivity');
+                selectElementOne.classList.add('durationActivity');
+                selectElementTwo.classList.add('selectTimeActivity');
+                //Make a placeholder for the options 
+                let listOption = ['Option1', 'Option2', 'Option3', 'Option4' ]
+                createPlaceholder(selectElementOne);
+                createPlaceholder(selectElementTwo);
+                isActive = true;
+            } else {
+
+            }
+            
+            
         });
         newBox.appendChild(buttonAddActivity);
     }
@@ -94,6 +103,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         dayBoxes[i].innerHTML = i + 1;
         dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
         
+    }
+
+    function createPlaceholder(mainBox) {
+        let placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Select an option';
+        placeholder.disabled = 'true';
+        placeholder.selected = 'true';
+        mainBox.appendChild(placeholder);
     }
 
     
