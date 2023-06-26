@@ -66,7 +66,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 addOptionToSelect('selectTimeActivity', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00');
                 isActive = true;
             } else {
-
+                let listInfoActivity = getAllInfoActivity();
+                document.getElementById('durationActivity').remove();
+                document.getElementById('selectTimeActivity').remove();
+                document.getElementById('inputActivity').remove();
             }
             
             
@@ -77,7 +80,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function createCloseButton() {
         newClose.addEventListener('click', () => {
             newBox.style.display = 'none';
-            // newBox.innerHTML = '';
         });   
         newClose.classList = 'closeButton';
         newClose.innerHTML = '&times;';
@@ -128,7 +130,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    
+    function getAllInfoActivity() {
+        // Returning the three values selected by the user
+        let infoLength = document.getElementById('durationActivity').value;
+        let infoTime = document.getElementById('selectTimeActivity').value;
+        let input = document.getElementById('inputActivity').value;
+        return [infoLength, infoTime, input]
+    }
 
 
 
