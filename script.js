@@ -101,7 +101,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                         boxActivity.style.backgroundColor = getRandomColor();
                         boxActivity.innerHTML = inputUser;
                     } else {
-                        boxActivity.style.width = `${lengthActivity} * 7.48%`;
+                        boxActivity.style.width = `${lengthActivity * 7.48}%`;
                         boxActivity.style.height = '100px';
                         boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
                         boxActivity.style.backgroundColor = getRandomColor();
