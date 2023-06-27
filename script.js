@@ -70,6 +70,51 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 document.getElementById('durationActivity').remove();
                 document.getElementById('selectTimeActivity').remove();
                 document.getElementById('inputActivity').remove();
+                isActive = false;
+
+                // Need to create a box with the size changing as the length of activity is going up
+                // The activity box side must also be responsive with the current graph
+                //Get the data from user selection
+                let lengthActivity = listInfoActivity[0].split(' ')[0];
+                let timeActivity = listInfoActivity[1].split(':')[0];
+                let inputUser = listInfoActivity[2];
+
+                if (lengthActivity === '' || timeActivity === '') {
+                    return;
+                } else {
+                    let boxActivity = document.createElement('div');
+                    boxActivity.style.position = 'absolute';
+                    boxActivity.style.bottom = '20.5%';
+
+                    // Taking the same left property as the vertival bars : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                    // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
+                    if (lengthActivity === '15') {
+                        boxActivity.style.width = '1.87%';
+                        boxActivity.style.height = '100px';
+                        boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                        boxActivity.innerHTML = inputUser;
+                        boxActivity.style.backgroundColor = getRandomColor();
+                    } else if (lengthActivity === '30') {
+                        boxActivity.style.width = '3.74%';
+                        boxActivity.style.height = '100px';
+                        boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                        boxActivity.style.backgroundColor = getRandomColor();
+                        boxActivity.innerHTML = inputUser;
+                    } else {
+                        boxActivity.style.width = `${lengthActivity} * 7.48%`;
+                        boxActivity.style.height = '100px';
+                        boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                        boxActivity.style.backgroundColor = getRandomColor();
+                        boxActivity.innerHTML = inputUser;
+                    }
+
+                    newBox.appendChild(boxActivity);
+                    
+                    
+                    
+                }
+                
+                
             }
             
             
@@ -96,8 +141,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let hourVerticalLine = document.createElement('p');
             hourVerticalLine.classList = `hourVerticalLine hour${i+8}`;
             verticalLine.classList = 'verticalLine';
-            verticalLine.style.left = `${i *7.28 + 5}%`;
-            hourVerticalLine.style.left = `${i *7.20 + 5}%`;
+            verticalLine.style.left = `${i *7.48 + 5}%`;
+            hourVerticalLine.style.left = `${i *7.40 + 4}%`;
             hourVerticalLine.innerHTML = `${i + 8}:00`
             newBox.appendChild(hourVerticalLine);
             newBox.appendChild(verticalLine);
@@ -136,6 +181,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let infoTime = document.getElementById('selectTimeActivity').value;
         let input = document.getElementById('inputActivity').value;
         return [infoLength, infoTime, input]
+    }
+
+    function getRandomColor() {
+        let r = Math.floor(Math.random() * 256);
+        let g = Math.floor(Math.random() * 256);
+        let b = Math.floor(Math.random() * 256);
+
+        return `rgb(${r}, ${g}, ${b})`;
     }
 
 

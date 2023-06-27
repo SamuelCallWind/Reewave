@@ -91,7 +91,7 @@ section.calendar{
 }
 .verticalLine {
     position: absolute;
-    bottom: 17.5%;
+    bottom: 17%;
     height: 3%;
     width: 0.2%;
     background-color: white;
