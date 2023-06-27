@@ -7,14 +7,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let newBox = document.createElement('div');
     let newClose = document.createElement('div');
     let boxData = new Array(daysInMonth).fill(null);
+    let boxIndex;
 
     function dayBoxGrow(e) {
-        let boxIndex = parseInt(e.target.innerHTML, 10) - 1;
-        if (boxIndex[boxData]) {
-            newBox.innerHTML = boxData[boxIndex];
+        boxIndex = parseInt(e.target.innerHTML, 10) - 1;
+        if (boxData[boxIndex]) {
+            calendar.removeChild(newBox);
+
+            newBox = boxData[boxIndex].cloneNode(true);
         } else {
             newBox.innerHTML = ''; 
-
             newBox.classList.add('dayBoxGrow');
             newBox.style.display = 'block';
             newBox.appendChild(createCloseButton());
@@ -34,7 +36,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             saveButton.classList.add('saveChanges');
             saveButton.innerHTML = 'Save';
             saveButton.addEventListener('click', () => {
-                boxData[boxIndex] = newBox.innerHTML;
+                boxData[boxIndex] = newBox.cloneNode(true);
+                console.log(boxData[boxIndex].innerHTML);
             });
             newBox.appendChild(saveButton);
             createSelectActivity()
@@ -66,53 +69,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 addOptionToSelect('selectTimeActivity', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00');
                 isActive = true;
             } else {
-                let listInfoActivity = getAllInfoActivity();
-                document.getElementById('durationActivity').remove();
-                document.getElementById('selectTimeActivity').remove();
-                document.getElementById('inputActivity').remove();
+                buildActivityBox();
                 isActive = false;
-
-                // Need to create a box with the size changing as the length of activity is going up
-                // The activity box side must also be responsive with the current graph
-                //Get the data from user selection
-                let lengthActivity = listInfoActivity[0].split(' ')[0];
-                let timeActivity = listInfoActivity[1].split(':')[0];
-                let inputUser = listInfoActivity[2];
-
-                if (lengthActivity === '' || timeActivity === '') {
-                    return;
-                } else {
-                    let boxActivity = document.createElement('div');
-                    boxActivity.style.position = 'absolute';
-                    boxActivity.style.bottom = '20.5%';
-
-                    // Taking the same left property as the vertival bars : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
-                    // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
-                    if (lengthActivity === '15') {
-                        boxActivity.style.width = '1.87%';
-                        boxActivity.style.height = '100px';
-                        boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
-                        boxActivity.innerHTML = inputUser;
-                        boxActivity.style.backgroundColor = getRandomColor();
-                    } else if (lengthActivity === '30') {
-                        boxActivity.style.width = '3.74%';
-                        boxActivity.style.height = '100px';
-                        boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
-                        boxActivity.style.backgroundColor = getRandomColor();
-                        boxActivity.innerHTML = inputUser;
-                    } else {
-                        boxActivity.style.width = `${lengthActivity * 7.48}%`;
-                        boxActivity.style.height = '100px';
-                        boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
-                        boxActivity.style.backgroundColor = getRandomColor();
-                        boxActivity.innerHTML = inputUser;
-                    }
-
-                    newBox.appendChild(boxActivity);
-                    
-                    
-                    
-                }
                 
                 
             }
@@ -191,7 +149,65 @@ window.addEventListener('DOMContentLoaded', (event) => {
         return `rgb(${r}, ${g}, ${b})`;
     }
 
+    function buildActivityBox() {
+        let listInfoActivity = getAllInfoActivity();
+        document.getElementById('durationActivity').remove();
+        document.getElementById('selectTimeActivity').remove();
+        document.getElementById('inputActivity').remove();
 
+        // Need to create a box with the size changing as the length of activity is going up
+        // The activity box side must also be responsive with the current graph
+        //Get the data from user selection
+        let lengthActivity = listInfoActivity[0].split(' ')[0];
+        let timeActivity = listInfoActivity[1].split(':')[0];
+        let inputUser = listInfoActivity[2];
+
+        if (lengthActivity === '' || timeActivity === '' || inputUser === '') {
+            // newBox.appendChild(createElement('div'));
+            // newBox.lastChild.style.textContent = 'Please enter a value in each box';
+            return;
+        } else {
+            let boxActivity = document.createElement('div');
+            boxActivity.style.position = 'absolute';
+            boxActivity.style.bottom = '20.5%';
+            boxActivity.classList = 'boxActivity';
+
+            // Taking the same left property as the vertical bars : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+            // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
+            if (lengthActivity === '15') {
+                boxActivity.style.width = '1.87%';
+                boxActivity.style.height = '100px';
+                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                boxActivity.innerHTML = inputUser;
+                boxActivity.style.backgroundColor = getRandomColor();
+                boxActivity.classList.add(`${inputUser}`);
+            } else if (lengthActivity === '30') {
+                boxActivity.style.width = '3.74%';
+                boxActivity.style.height = '100px';
+                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                boxActivity.style.backgroundColor = getRandomColor();
+                boxActivity.innerHTML = inputUser;
+                boxActivity.classList.add(`${inputUser}`);
+            } else {
+                boxActivity.style.width = `${lengthActivity * 7.48}%`;
+                boxActivity.style.height = '100px';
+                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                boxActivity.style.backgroundColor = getRandomColor();
+                boxActivity.innerHTML = inputUser;
+                boxActivity.classList.add(`${inputUser}`);
+            }
+
+            newBox.appendChild(boxActivity);
+            boxData[boxIndex] = newBox.cloneNode(true);
+            
+            
+            
+                }
+    }
+
+    function saveChangesActivities() {
+
+    }
 
 }); 
 

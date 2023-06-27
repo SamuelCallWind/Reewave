@@ -176,6 +176,13 @@ section.calendar{
     min-width: 40px;
     min-height: 20px;
 }
+
+.boxActivity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #durationActivity, #selectTimeActivity, #inputActivity {
     width: 12vw;
     font-size: 0.8em;
