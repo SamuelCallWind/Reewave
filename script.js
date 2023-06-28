@@ -13,8 +13,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         boxIndex = parseInt(e.target.innerHTML, 10) - 1;
         if (boxData[boxIndex]) {
             calendar.removeChild(newBox);
-
             newBox = boxData[boxIndex].cloneNode(true);
+            // Need to delete the elements with the event listeners and apply them again
+            deleteElements();      
+            newBox.appendChild(createCloseButton());
+            newBox.appendChild(createCloseButton());       
+            createSelectActivity();
         } else {
             newBox.innerHTML = ''; 
             newBox.classList.add('dayBoxGrow');
@@ -32,15 +36,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newBox.appendChild(document.createElement('div')).classList.add('switchButtonTwo');
             newBox.lastChild.innerHTML = 'Night';
 
-            let saveButton = document.createElement('div');
-            saveButton.classList.add('saveChanges');
-            saveButton.innerHTML = 'Save';
-            saveButton.addEventListener('click', () => {
-                boxData[boxIndex] = newBox.cloneNode(true);
-                console.log(boxData[boxIndex].innerHTML);
-            });
-            newBox.appendChild(saveButton);
-            createSelectActivity()
+            createSaveButton();
+            createSelectActivity();
         }
         calendar.appendChild(newBox);
     
@@ -61,7 +58,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 selectElementOne.id  = 'durationActivity';
                 selectElementTwo.id = 'selectTimeActivity';
                 
-                //calling functions to create a placeholder for the options & options
+                //calling functions to create a placeholder for the options
                 createPlaceholder(selectElementOne, 'Select the length of activity');
                 addOptionToSelect('durationActivity', '15 minutes', '30 minutes', '1 Hour', '2 Hours', '3 Hours', '4 Hours', '5 Hours', '6 Hours', '7 Hours', '8 Hours');
                 
@@ -81,13 +78,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function createCloseButton() {
-        newClose.addEventListener('click', () => {
-            newBox.style.display = 'none';
-        });   
+        newClose.addEventListener('click', () => setDisplayNone(newBox));
         newClose.classList = 'closeButton';
         newClose.innerHTML = '&times;';
         return newClose;
     }
+    function createSaveButton() {
+        let saveButton = document.createElement('div');
+        saveButton.classList.add('saveChanges');
+        saveButton.innerHTML = 'Save';
+        saveButton.addEventListener('click', () => {
+            boxData[boxIndex] = newBox.cloneNode(true);
+        newBox.appendChild(saveButton);
+        });
+    }
+    
     
     function createDayLine() {
         let dayLine = document.createElement('div')
@@ -205,8 +210,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
     }
 
-    function saveChangesActivities() {
+    function deleteElements() {
+        let saveChangesElem = newBox.querySelector('.saveChanges');
+        let addNewButtonElem = newBox.querySelector('.addNewButton');
+        let closeButtonElem = newBox.querySelector('.closeButton');
+        if(saveChangesElem) saveChangesElem.remove();
+        if(addNewButtonElem) addNewButtonElem.remove();
+        if(closeButtonElem) closeButtonElem.remove();
+    }
 
+    function setDisplayNone(object) {
+        object.style.display = 'none';
     }
 
 }); 
