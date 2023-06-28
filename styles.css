@@ -91,7 +91,7 @@ section.calendar{
 }
 .verticalLine {
     position: absolute;
-    bottom: 17%;
+    bottom: 17.49%;
     height: 3%;
     width: 0.2%;
     background-color: white;
@@ -192,6 +192,21 @@ section.calendar{
 h1 {
     color: white;
     margin-left: 1em;
+}
+
+.errorMessage {
+    font-size: 1em;
+    border: solid rgba(123, 0, 0, 0.702);
+    background-color: rgba(255, 186, 186, 0.702);
+    color: black;
+    max-width: 60%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 5px;
 }
 
 

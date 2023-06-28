@@ -84,6 +84,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         newClose.innerHTML = '&times;';
         return newClose;
     }
+
     function createSaveButton() {
         let saveButton = document.createElement('div');
         saveButton.classList.add('saveChanges');
@@ -105,7 +106,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let hourVerticalLine = document.createElement('p');
             hourVerticalLine.classList = `hourVerticalLine hour${i+8}`;
             verticalLine.classList = 'verticalLine';
-            verticalLine.style.left = `${i *7.48 + 5}%`;
+            verticalLine.style.left = `${i *7.49 + 5}%`;
             hourVerticalLine.style.left = `${i *7.40 + 4}%`;
             hourVerticalLine.innerHTML = `${i + 8}:00`
             newBox.appendChild(hourVerticalLine);
@@ -178,12 +179,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
             boxActivity.style.bottom = '20.5%';
             boxActivity.classList = 'boxActivity';
 
-            // Taking the same left property as the vertical bars : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
-            // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
-            if (lengthActivity === '15') {
+            //Display an error message if the activity is before 8:00 or after 20:00 on the day box
+            if ((parseInt(lengthActivity) + parseInt(timeActivity)) < 8 || (parseInt(lengthActivity) + parseInt(timeActivity)) > 20) {
+                errorMessageActivity('Cannot create an activity before the minimum day time or after the maximum day time');
+                return;
+            } else if (lengthActivity === '15') {
                 boxActivity.style.width = '1.87%';
                 boxActivity.style.height = '100px';
-                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                // Taking the same left property as the vertical bars to have the numbers approx. at the same place : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`; // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
                 boxActivity.innerHTML = inputUser;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.classList.add(`${inputUser}`);
@@ -204,11 +208,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             newBox.appendChild(boxActivity);
-            boxData[boxIndex] = newBox.cloneNode(true);
-            
-            
-            
-                }
+            boxData[boxIndex] = newBox.cloneNode(true);   
+        }
     }
 
     function deleteElements() {
@@ -222,6 +223,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function setDisplayNone(object) {
         object.style.display = 'none';
+    }
+
+    function errorMessageActivity(messageToDisplay) {
+        let errorMessage = document.createElement('div');
+        errorMessage.classList = 'errorMessage';
+        errorMessage.innerHTML = messageToDisplay;
+        newBox.appendChild(errorMessage);
     }
 
 }); 
