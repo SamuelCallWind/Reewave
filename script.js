@@ -19,6 +19,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newBox.appendChild(createCloseButton());
             newBox.appendChild(createCloseButton());       
             createSelectActivity();
+            createSaveButton();
         } else {
             newBox.innerHTML = ''; 
             newBox.classList.add('dayBoxGrow');
@@ -89,8 +90,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         saveButton.innerHTML = 'Save';
         saveButton.addEventListener('click', () => {
             boxData[boxIndex] = newBox.cloneNode(true);
-        newBox.appendChild(saveButton);
         });
+        newBox.appendChild(saveButton);
     }
     
     
