@@ -15,6 +15,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
         
     }
 
+    function errorMessageActivity(messageToDisplay) {
+        let errorMessage = document.createElement('div');
+        errorMessage.classList = 'errorMessage';
+        errorMessage.innerHTML = messageToDisplay;
+        newBox.appendChild(errorMessage);
+
+        setTimeout( function () {
+            errorMessage.remove()
+        }, 5000);
+    }
+
     function dayBoxGrow(e) {
         boxIndex = parseInt(e.target.innerHTML, 10) - 1;
         if (boxData[boxIndex]) {
@@ -60,7 +71,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let selectElementOne = newBox.appendChild(document.createElement('select'));
                 let selectElementTwo = newBox.appendChild(document.createElement('select'));
                 let inputElement = newBox.appendChild(document.createElement('input'));
-                createInputRadio()
                 
                 inputElement.id = 'inputActivity';
                 selectElementOne.id  = 'durationActivity';
@@ -69,7 +79,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 //calling functions to create a placeholder for the options
                 createPlaceholder(selectElementOne, 'Select the length of activity');
                 addOptionToSelect('durationActivity', '15 minutes', '30 minutes', '1 Hour', '2 Hours', '3 Hours', '4 Hours', '5 Hours', '6 Hours', '7 Hours', '8 Hours');
-                
+                createInputRadio();
                 createPlaceholder(selectElementTwo, 'Select the time of activity');
                 addOptionToSelect('selectTimeActivity', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00');
                 isActive = true;
@@ -167,11 +177,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function getAllInfoActivity() {
-        // Returning the three values selected by the user
+        // Returning the four values selected by the user
         let infoLength = document.getElementById('durationActivity').value;
         let infoTime = document.getElementById('selectTimeActivity').value;
         let input = document.getElementById('inputActivity').value;
-        return [infoLength, infoTime, input]
+        let optionRadio = getSelectedOption();
+        
+        return [infoLength, infoTime, input, optionRadio];
+    }
+    function getSelectedOption() {
+        let radio = document.getElementsByName('urgencyActivity');
+        for (i = 0; i < radio.length; i++) {
+            if (radio[i].checked) {
+                let selectedLabel = radio[i].nextSibling.textContent;
+                return selectedLabel;
+            }
+            
+        }
+        return errorMessageActivity('No urgency provided');
     }
 
     function getRandomColor() {
@@ -205,13 +228,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             boxActivity.style.bottom = '20.5%';
             boxActivity.classList = 'boxActivity';
 
-            //Display an error message if the activity is before 8:00 or after 20:00 on the day box
-            if ((parseInt(lengthActivity) + parseInt(timeActivity)) < 8 || (parseInt(lengthActivity) + parseInt(timeActivity)) > 20) {
-                errorMessageActivity('Cannot create an activity before the minimum day time or after the maximum day time');
-                return;
-            } else if (lengthActivity === '15') {
+            
+            if (lengthActivity === '15') {
                 boxActivity.style.width = '1.87%';
-                boxActivity.style.height = '100px';
+                boxActivity.style.height = '5vh';
                 // Taking the same left property as the vertical bars to have the numbers approx. at the same place : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
                 boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`; // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
                 boxActivity.innerHTML = inputUser;
@@ -224,6 +244,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.innerHTML = inputUser;
                 boxActivity.classList.add(`${inputUser}`);
+            } else if ((parseInt(lengthActivity) + parseInt(timeActivity)) < 8 || (parseInt(lengthActivity) + parseInt(timeActivity)) > 20) {
+                errorMessageActivity('Cannot create an activity before the minimum day time or after the maximum day time');
+                return;
+                //Display an error message if the activity is before 8:00 or after 20:00 on the day box
+                // Mentioned it after the 15 and 30 as it would automatically bring the error
             } else {
                 boxActivity.style.width = `${lengthActivity * 7.48}%`;
                 boxActivity.style.height = '100px';
@@ -250,13 +275,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function setDisplayNone(object) {
         object.style.display = 'none';
     }
-
-    function errorMessageActivity(messageToDisplay) {
-        let errorMessage = document.createElement('div');
-        errorMessage.classList = 'errorMessage';
-        errorMessage.innerHTML = messageToDisplay;
-        newBox.appendChild(errorMessage);
+    //                                pun intended
+    function getPriorityActivity(inputRadioActivity) {
+        if (inputRadioActivity === 'Low priority') {
+            return
+        } else if (inputRadioActivity === 'Medium priority') {
+            return
+        } else if (inputRadioActivity === 'High priority') {
+            return
+        } else if (inputRadioActivity === 'Very high priority') {
+            return
+        }
     }
+    
 
 }); 
 
