@@ -127,13 +127,13 @@ section.calendar{
     padding-right: 1px;
     font-size: 30px;
     cursor: pointer;
-    background-color: #630000c3; /* red */
+    background-color: #630000c3; 
     color: white;
     width: 35px;
     height: 30px;
     text-align: center;
-    border-radius: 50%; /* make it circular */
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26); /* add a little shadow for 3D effect */
+    border-radius: 50%; 
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26); 
 }
 .switchButtonOne, .switchButtonTwo, .saveChanges {
     position: absolute;
@@ -171,7 +171,7 @@ section.calendar{
 
 .addNewButton {
     position: absolute;
-    top: 12%;
+    top: 15%;
     left: 2%;
     min-width: 40px;
     min-height: 20px;
@@ -187,8 +187,19 @@ section.calendar{
     width: 12vw;
     font-size: 0.8em;
     min-height: 15px;
-    margin: 2%;
+    position: absolute;
+    top: 23%;
 }
+#durationActivity {
+    left: 2%;
+}
+#selectTimeActivity {
+    left: 20%;
+}
+#inputActivity {
+    left: 40%;
+}
+
 h1 {
     color: white;
     margin-left: 1em;
@@ -221,6 +232,9 @@ h1 {
         min-width: 200px;
         max-width: 200px;
         min-height: 100px;
+    }
+    .errorMessage {
+        font-size: 2.5vw;
     }
 }
 @media (max-width: 485px) {

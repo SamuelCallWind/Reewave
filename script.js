@@ -9,6 +9,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let boxData = new Array(daysInMonth).fill(null);
     let boxIndex;
 
+    for (i = 0; i < daysInMonth; i++) {
+        dayBoxes[i].innerHTML = i + 1;
+        dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
+        
+    }
+
     function dayBoxGrow(e) {
         boxIndex = parseInt(e.target.innerHTML, 10) - 1;
         if (boxData[boxIndex]) {
@@ -20,12 +26,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newBox.appendChild(createCloseButton());       
             createSelectActivity();
             createSaveButton();
+            createInputRadio();
         } else {
             newBox.innerHTML = ''; 
             newBox.classList.add('dayBoxGrow');
             newBox.style.display = 'block';
             newBox.appendChild(createCloseButton());
             createDayLine();
+            createInputRadio();
 
             let boxTitle = document.createElement('h1');
             boxTitle.innerHTML = `${currentMonth}  ${e.target.innerHTML}`;
@@ -78,6 +86,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
         newBox.appendChild(buttonAddActivity);
     }
 
+
+    function createInputRadio() {
+        let mainDiv = document.createElement('div');
+        let listOption = ['Low priority', 'Medium priority', 'High priority', 'Very high priority'];
+        for (i = 0; i < 4; i++) {
+            let createLabel = document.createElement('label');
+            let inputRadio = document.createElement('input');
+            inputRadio.type = 'radio';
+            inputRadio.name = 'urgencyActivity';
+            inputRadio.value = 'option' + [i];
+            createLabel.for = 'option' + [i];
+            createLabel.innerHTML = listOption[i];
+            createLabel.classList = 'label'
+            mainDiv.appendChild(inputRadio);
+            mainDiv.appendChild(createLabel);
+        }
+        newBox.appendChild(mainDiv);
+    }
+
     function createCloseButton() {
         newClose.addEventListener('click', () => setDisplayNone(newBox));
         newClose.classList = 'closeButton';
@@ -112,12 +139,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newBox.appendChild(hourVerticalLine);
             newBox.appendChild(verticalLine);
         }
-    }
-
-    for (i = 0; i < daysInMonth; i++) {
-        dayBoxes[i].innerHTML = i + 1;
-        dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
-        
     }
 
     function createPlaceholder(mainBox, textPlaceholder) {
