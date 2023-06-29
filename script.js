@@ -258,6 +258,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.classList.add(`${inputUser}`);
             }
 
+            document.querySelector('.mainDivLabelActivity').remove();
             newBox.appendChild(boxActivity);
             boxData[boxIndex] = newBox.cloneNode(true);   
         }
