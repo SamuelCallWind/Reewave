@@ -231,7 +231,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             
             if (lengthActivity === '15') {
                 boxActivity.style.width = '1.87%';
-                boxActivity.style.height = '5vh';
+                boxActivity.style.height = getPriorityActivity(getSelectedOption());
                 // Taking the same left property as the vertical bars to have the numbers approx. at the same place : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
                 boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`; // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
                 boxActivity.innerHTML = inputUser;
@@ -239,7 +239,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.classList.add(`${inputUser}`);
             } else if (lengthActivity === '30') {
                 boxActivity.style.width = '3.74%';
-                boxActivity.style.height = '100px';
+                boxActivity.style.height = getPriorityActivity(getSelectedOption());
                 boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.innerHTML = inputUser;
@@ -251,7 +251,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 // Mentioned it after the 15 and 30 as it would automatically bring the error
             } else {
                 boxActivity.style.width = `${lengthActivity * 7.48}%`;
-                boxActivity.style.height = '100px';
+                boxActivity.style.height = getPriorityActivity(getSelectedOption());
                 boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.innerHTML = inputUser;
@@ -278,13 +278,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     //                                pun intended
     function getPriorityActivity(inputRadioActivity) {
         if (inputRadioActivity === 'Low priority') {
-            return
+            return '10%';
         } else if (inputRadioActivity === 'Medium priority') {
-            return
+            return '20%';
         } else if (inputRadioActivity === 'High priority') {
-            return
+            return '30%';
         } else if (inputRadioActivity === 'Very high priority') {
-            return
+            return '40%';
         }
     }
     
