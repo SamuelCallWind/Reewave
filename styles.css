@@ -100,7 +100,7 @@ section.calendar{
     position: absolute;
     bottom: 11%;
     color: white;
-    font-size: 10px;
+    font-size: 1vw;
 }
 
 .dayBoxGrow {
@@ -198,6 +198,19 @@ section.calendar{
 }
 #inputActivity {
     left: 40%;
+}
+
+.mainDivLabelActivity {
+    display: flex;
+    flex-direction: column;
+}
+.pairDivLabelActivity {
+    position: absolute;
+    left: 60%;
+}
+
+.labelActivity {
+    font-size: 2vw;
 }
 
 h1 {

@@ -26,14 +26,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newBox.appendChild(createCloseButton());       
             createSelectActivity();
             createSaveButton();
-            createInputRadio();
         } else {
             newBox.innerHTML = ''; 
             newBox.classList.add('dayBoxGrow');
             newBox.style.display = 'block';
             newBox.appendChild(createCloseButton());
             createDayLine();
-            createInputRadio();
 
             let boxTitle = document.createElement('h1');
             boxTitle.innerHTML = `${currentMonth}  ${e.target.innerHTML}`;
@@ -62,6 +60,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let selectElementOne = newBox.appendChild(document.createElement('select'));
                 let selectElementTwo = newBox.appendChild(document.createElement('select'));
                 let inputElement = newBox.appendChild(document.createElement('input'));
+                createInputRadio()
                 
                 inputElement.id = 'inputActivity';
                 selectElementOne.id  = 'durationActivity';
@@ -89,6 +88,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function createInputRadio() {
         let mainDiv = document.createElement('div');
+        mainDiv.classList = 'mainDivLabelActivity'
         let listOption = ['Low priority', 'Medium priority', 'High priority', 'Very high priority'];
         for (i = 0; i < 4; i++) {
             let createLabel = document.createElement('label');
@@ -98,9 +98,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             inputRadio.value = 'option' + [i];
             createLabel.for = 'option' + [i];
             createLabel.innerHTML = listOption[i];
-            createLabel.classList = 'label'
-            mainDiv.appendChild(inputRadio);
-            mainDiv.appendChild(createLabel);
+            createLabel.classList = 'labelActivity';
+
+            let pairDiv = document.createElement('div');
+            pairDiv.classList = 'pairDivLabelActivity';
+            pairDiv.style.top = `${i * 4 + 15}%`;
+            pairDiv.appendChild(inputRadio);
+            pairDiv.appendChild(createLabel);
+            mainDiv.appendChild(pairDiv);
         }
         newBox.appendChild(mainDiv);
     }
