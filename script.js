@@ -133,6 +133,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         saveButton.innerHTML = 'Save';
         saveButton.addEventListener('click', () => {
             boxData[boxIndex] = newBox.cloneNode(true);
+            let saveMessage = document.createElement('p')
+            saveMessage.innerHTML = 'Data saved for the day';
+            saveMessage.classList = 'saveMessage';
+            newBox.appendChild(saveMessage);
+            setTimeout(function() {
+                saveMessage.remove();
+            }, 3000);
         });
         newBox.appendChild(saveButton);
     }
