@@ -191,6 +191,21 @@ section.calendar{
     min-width: 40px;
     min-height: 20px;
 }
+.addNewMessage {
+    position: absolute;
+    top: 15%;
+    right: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 100%;
+    border: solid rgb(161, 255, 161) 2px;
+    background-color: green;
+    max-width: auto;
+    height: 5%;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 5px;
+}
 
 .boxActivity {
     display: flex;

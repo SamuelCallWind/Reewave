@@ -82,6 +82,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 createInputRadio();
                 createPlaceholder(selectElementTwo, 'Select the time of activity');
                 addOptionToSelect('selectTimeActivity', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00');
+                
                 isActive = true;
             } else {
                 buildActivityBox();
@@ -228,12 +229,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
         if (lengthActivity === '' || timeActivity === '' || inputUser === '') {
             // newBox.appendChild(createElement('div'));
             // newBox.lastChild.style.textContent = 'Please enter a value in each box';
+            let radio = document.querySelector('labelActivity');
+            newBox.removeChild(radio);
             return;
         } else {
             let boxActivity = document.createElement('div');
             boxActivity.style.position = 'absolute';
             boxActivity.style.bottom = '20.5%';
             boxActivity.classList = 'boxActivity';
+            let messageBlockAdded = document.createElement('div');
+            messageBlockAdded.classList = 'addNewMessage';
+            messageBlockAdded.innerHTML = 'Activity added';
+            newBox.appendChild(messageBlockAdded);
+            setTimeout(function () {
+                messageBlockAdded.remove();
+            }, 3000);
+            
 
             
             if (lengthActivity === '15') {
