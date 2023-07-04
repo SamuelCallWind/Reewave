@@ -227,10 +227,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let inputUser = listInfoActivity[2];
 
         if (lengthActivity === '' || timeActivity === '' || inputUser === '') {
-            // newBox.appendChild(createElement('div'));
-            // newBox.lastChild.style.textContent = 'Please enter a value in each box';
-            let radio = document.querySelector('labelActivity');
-            newBox.removeChild(radio);
+            document.querySelector('.mainDivLabelActivity').remove();
             return;
         } else {
             let boxActivity = document.createElement('div');
