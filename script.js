@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     let dayBoxes = document.querySelectorAll('.boxDay');
     let calendar = document.querySelector('.calendar');
-    let currentMonth = new Date().toLocaleString('default', { month: 'long' });
+    let currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
     let newBox = document.createElement('div');
     let newClose = document.createElement('div');
     let boxData = new Array(daysInMonth).fill(null);
@@ -274,8 +274,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
 
             document.querySelector('.mainDivLabelActivity').remove();
-            newBox.appendChild(boxActivity);
-            boxData[boxIndex] = newBox.cloneNode(true);   
+            newBox.appendChild(boxActivity);  
         }
     }
 
