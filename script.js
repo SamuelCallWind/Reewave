@@ -31,12 +31,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         if (boxData[boxIndex]) {
             calendar.removeChild(newBox);
             newBox = boxData[boxIndex].cloneNode(true);
-            // Need to delete the elements with the event listeners and apply them again
+            // Need to delete the elements and add them again to apply the event listener again
             deleteElements();      
             newBox.appendChild(createCloseButton());
             newBox.appendChild(createCloseButton());       
             createSelectActivity();
             createSaveButton();
+            
         } else {
             newBox.innerHTML = ''; 
             newBox.classList.add('dayBoxGrow');
@@ -58,6 +59,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             createSelectActivity();
         }
         calendar.appendChild(newBox);
+        let removeMessage = document.querySelector('.addNewMessage');
+        if (removeMessage) removeMessage.remove();
+        document.querySelector('.errorMessage')?.remove();
     
     }
 
