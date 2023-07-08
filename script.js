@@ -86,7 +86,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 createInputRadio();
                 createPlaceholder(selectElementTwo, 'Select the time of activity');
                 addOptionToSelect('selectTimeActivity', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00');
-                
+                setTimeout(() => {
+                    inputElement.style.opacity = 1;
+                    selectElementOne.style.opacity = 1;
+                    selectElementTwo.style.opacity = 1;
+                    document.querySelectorAll('.pairDivLabelActivity').forEach(function(element) {
+                        element.style.opacity = 1;
+                    });
+                    
+                }, 0);
+
                 isActive = true;
             } else {
                 buildActivityBox();
