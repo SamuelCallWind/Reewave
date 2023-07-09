@@ -263,7 +263,7 @@ h1 {
     padding: 5px;
 }
 
-.inputActivity, .durationActivity, .selectTimeActivity, .pairDivLabelActivity {
+#inputActivity, #durationActivity, #selectTimeActivity, .pairDivLabelActivity {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 
