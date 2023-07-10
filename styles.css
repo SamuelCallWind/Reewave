@@ -3,9 +3,8 @@
 } */
 
 body {
-    background-color: rgba(12, 25, 42, 0.816);
+    background-color: rgba(249, 249, 249, 0.816);
     margin: 0;
-    font-family: 'Pacifico', cursive;
 }
 
 
@@ -58,18 +57,18 @@ section.calendar{
 }
 
 .boxDay {
+    background-color: rgb(104, 126, 154);
     height: 1fr;
     width: 1fr;
     border: solid black 2px;
     border-radius: 3px;
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 2em;
-    font-family: 'Pacifico', cursive;
     transition: .2s ease-in-out;
     cursor: pointer;
     user-select: none;
     box-shadow: 3px 3px 5px rgb(8, 23, 33);
-    text-shadow: 1px 2px orange;
+    text-shadow: 1px 1px orange;
 }
 .boxDay:hover {
     color: black;
@@ -148,7 +147,8 @@ section.calendar{
     transform: skew(-20deg);
     user-select: none;
     transition: 0.5s ease-in-out;
-    font-size: 0.8em;
+    overflow: hidden;
+    font-size: 2vw;
     text-align: center;
     line-height: 1.3em;
 }
@@ -231,6 +231,8 @@ section.calendar{
 }
 
 .mainDivLabelActivity {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
     display: flex;
     flex-direction: column;
 }

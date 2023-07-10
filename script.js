@@ -240,6 +240,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let inputUser = listInfoActivity[2];
 
         if (lengthActivity === '' || timeActivity === '' || inputUser === '') {
+            document.querySelector('.mainDivLabelActivity').style.opacity = 1;
             document.querySelector('.mainDivLabelActivity').remove();
             return;
         } else {
