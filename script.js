@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function errorMessageActivity(messageToDisplay) {
         let errorMessage = document.createElement('div');
         errorMessage.classList = 'errorMessage';
-        errorMessage.innerHTML = messageToDisplay;
+        errorMessage.textContent = messageToDisplay;
         newBox.appendChild(errorMessage);
 
         setTimeout( function () {
@@ -33,7 +33,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newBox = boxData[boxIndex].cloneNode(true);
             // Need to delete the elements and add them again to apply the event listener again
             deleteElements();      
-            newBox.appendChild(createCloseButton());
             newBox.appendChild(createCloseButton());       
             createSelectActivity();
             createSaveButton();
@@ -135,9 +134,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function createCloseButton() {
+        let cross = document.createElement('div');
+        cross.innerHTML = '&times;';
+        cross.classList = 'cross';
+        newClose.innerHTML = ''; // clear the content of newClose
         newClose.addEventListener('click', () => setDisplayNone(newBox));
         newClose.classList = 'closeButton';
-        newClose.innerHTML = '&times;';
+        newClose.appendChild(cross);
         return newClose;
     }
 
@@ -240,7 +243,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let inputUser = listInfoActivity[2];
 
         if (lengthActivity === '' || timeActivity === '' || inputUser === '') {
-            document.querySelector('.mainDivLabelActivity').style.opacity = 1;
             document.querySelector('.mainDivLabelActivity').remove();
             return;
         } else {
@@ -250,8 +252,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             boxActivity.classList = 'boxActivity';
             let messageBlockAdded = document.createElement('div');
             messageBlockAdded.classList = 'addNewMessage';
-            messageBlockAdded.innerHTML = 'Activity added';
             newBox.appendChild(messageBlockAdded);
+            messageBlockAdded.innerHTML = 'Activity added';
+            
             setTimeout(function () {
                 messageBlockAdded.remove();
             }, 3000);
@@ -268,11 +271,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.classList.add(`${inputUser}`);
             } else if (lengthActivity === '30') {
                 boxActivity.style.width = '3.74%';
+                boxActivity.style.transition = 'height 0.5s ease';
                 boxActivity.style.height = getPriorityActivity(getSelectedOption());
                 boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.innerHTML = inputUser;
                 boxActivity.classList.add(`${inputUser}`);
+                
             } else if ((parseInt(lengthActivity) + parseInt(timeActivity)) < 8 || (parseInt(lengthActivity) + parseInt(timeActivity)) > 20) {
                 errorMessageActivity('Cannot create an activity before the minimum day time or after the maximum day time');
                 return;
