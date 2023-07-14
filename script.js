@@ -137,7 +137,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let cross = document.createElement('div');
         cross.innerHTML = '&times;';
         cross.classList = 'cross';
-        newClose.innerHTML = ''; // clear the content of newClose
+        newClose.innerHTML = ''; 
         newClose.addEventListener('click', () => setDisplayNone(newBox));
         newClose.classList = 'closeButton';
         newClose.appendChild(cross);
