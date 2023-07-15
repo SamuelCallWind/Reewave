@@ -64,10 +64,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function removeErrorMessages() {
         let removeMessage = document.querySelector('.addNewMessage');
         if (removeMessage) removeMessage.remove();
-        let removeSecondMessage = document.querySelector('.errorMessage');
-        if (removeSecondMessage) removeSecondMessage.remove();
-        let removeThirdMessage = document.querySelector('.errorMessage');
-        if (removeThirdMessage) removeThirdMessage.remove();
+        let removeSecondMessage = document.querySelectorAll('.errorMessage');
+        removeSecondMessage.forEach(error => error.remove());
     }
 
     function createSelectActivity() {
