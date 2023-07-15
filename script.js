@@ -58,10 +58,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             createSelectActivity();
         }
         calendar.appendChild(newBox);
+        removeErrorMessages()
+    
+    }
+    function removeErrorMessages() {
         let removeMessage = document.querySelector('.addNewMessage');
         if (removeMessage) removeMessage.remove();
-        document.querySelector('.errorMessage')?.remove();
-    
+        let removeSecondMessage = document.querySelector('.errorMessage');
+        if (removeSecondMessage) removeSecondMessage.remove();
+        let removeThirdMessage = document.querySelector('.errorMessage');
+        if (removeThirdMessage) removeThirdMessage.remove();
     }
 
     function createSelectActivity() {
