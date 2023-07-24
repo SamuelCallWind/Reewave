@@ -82,7 +82,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             createSelectActivity();
         }
         calendar.appendChild(newBox);
-        removeErrorMessages()
+        removeErrorMessages();
+        let nightSwitchButton = document.querySelector('.switchButtonTwo')
+        nightSwitchButton.addEventListener('click', switchNight);
     
     }
     function removeErrorMessages() {
@@ -354,6 +356,20 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     }
     
+    
+    function switchNight() {
+        let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
+        for (i = 0; i < times.length; i++) {
+            let intHour = parseInt(times[i].textContent.split(':')[0]);
+            if (intHour <= 11) {
+                let newTime = (intHour + 13) + ':00';
+                times[i].textContent = newTime;
+            } else if (intHour > 11) {
+                let newTime = (intHour - 12) + ':00';
+                times[i].textContent = newTime;
+            }
+        }
+    }
 
 }); 
 
