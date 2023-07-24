@@ -1,4 +1,28 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    //making sure the animation for the sidebar doesn't start
+    let bars = document.querySelectorAll('.oneBar');
+    for (i = 0; i < bars.length; i++) {
+        bars[i].style.animation = 'rotate360 1s alternate';
+        bars[i].style.animationPlayState = 'paused';
+    }
+
+    let sideBar = document.querySelector('.sideBarButton');
+    sideBar.addEventListener('mouseover', function () {
+        for (i = 0; i < bars.length; i++) {
+            bars[i].style.animationPlayState = 'running';
+            bars[i].style.animation = 'rotate360 1s alternate';
+            if (i > 0) {
+                //adding the delay on each bar
+                bars[i].style.animationDelay = (0.05 * i) + 's';
+            }
+        }
+    });
+    sideBar.addEventListener('mouseout', function () {
+        for (i = 0; i < bars.length; i++) {
+            bars[i].style.animation = 'reverseRotate360 1s alternate';
+        }
+    });
+    
     const currentDate = new Date();
     let daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
     let dayBoxes = document.querySelectorAll('.boxDay');
