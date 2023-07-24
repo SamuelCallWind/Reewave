@@ -307,6 +307,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.classList.add(`${inputUser}`);
                 
             } else if ((parseInt(lengthActivity) + parseInt(timeActivity)) < 8 || (parseInt(lengthActivity) + parseInt(timeActivity)) > 20) {
+                let radioElements = document.querySelector('.mainDivLabelActivity');
+                if (radioElements) {
+                    radioElements.remove();
+                }
                 errorMessageActivity('Cannot create an activity before the minimum day time or after the maximum day time');
                 return;
                 //Display an error message if the activity is before 8:00 or after 20:00 on the day box
