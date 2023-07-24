@@ -204,7 +204,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let hourVerticalLine = document.createElement('p');
             hourVerticalLine.classList = `hourVerticalLine hour${i+8}`;
             verticalLine.classList = 'verticalLine';
-            verticalLine.style.left = `${i *7.49 + 5}%`;
+            verticalLine.style.left = `${i *7.40 + 5}%`;
             hourVerticalLine.style.left = `${i *7.40 + 4}%`;
             hourVerticalLine.innerHTML = `${i + 8}:00`
             newBox.appendChild(hourVerticalLine);
