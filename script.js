@@ -84,7 +84,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         calendar.appendChild(newBox);
         removeErrorMessages();
         let nightSwitchButton = document.querySelector('.switchButtonTwo')
+        let daySwitchButton = document.querySelector('.switchButtonOne')
         nightSwitchButton.addEventListener('click', switchNight);
+        daySwitchButton.addEventListener('click', switchDay);
     
     }
     function removeErrorMessages() {
@@ -368,6 +370,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 let newTime = (intHour - 12) + ':00';
                 times[i].textContent = newTime;
             }
+        }
+    }
+    function switchDay() {
+        let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
+        for (i = 0; i < times.length; i++) {
+            times[i].textContent = `${i + 8}` + ':00';
         }
     }
 
