@@ -165,6 +165,10 @@ section.calendar{
     color: white;
     font-size: 1vw;
 }
+.fade {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
 
 .dayBoxGrow {
     position: fixed;

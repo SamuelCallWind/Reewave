@@ -1,4 +1,15 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    const currentDate = new Date();
+    let daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    let dayBoxes = document.querySelectorAll('.boxDay');
+    let calendar = document.querySelector('.calendar');
+    let currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
+    let newBox = document.createElement('div');
+    let newClose = document.createElement('div');
+    let boxData = new Array(daysInMonth).fill(null);
+    let boxIndex;
+    let isDay = true;
+    
     //making sure the animation for the sidebar doesn't start
     let bars = document.querySelectorAll('.oneBar');
     for (i = 0; i < bars.length; i++) {
@@ -33,15 +44,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     }
     
-    const currentDate = new Date();
-    let daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-    let dayBoxes = document.querySelectorAll('.boxDay');
-    let calendar = document.querySelector('.calendar');
-    let currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
-    let newBox = document.createElement('div');
-    let newClose = document.createElement('div');
-    let boxData = new Array(daysInMonth).fill(null);
-    let boxIndex;
+    
 
     for (i = 0; i < daysInMonth; i++) {
         dayBoxes[i].innerHTML = i + 1;
@@ -370,23 +373,43 @@ window.addEventListener('DOMContentLoaded', (event) => {
     
     
     function switchNight() {
-        let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
-        for (i = 0; i < times.length; i++) {
-            let intHour = parseInt(times[i].textContent.split(':')[0]);
-            if (intHour <= 11) {
-                let newTime = (intHour + 12) + ':00';
-                times[i].textContent = newTime;
-            } else if (intHour > 11) {
-                let newTime = (intHour - 12) + ':00';
-                times[i].textContent = newTime;
+        if (isDay){
+            let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
+            for (let i = 0; i < times.length; i++) {
+                times[i].classList.add('fade');
+                setTimeout(function () {
+                    let intHour = parseInt(times[i].textContent.split(':')[0]);
+                if (intHour <= 11) {
+                    let newTime = (intHour + 12) + ':00';
+                    times[i].textContent = newTime;
+                } else if (intHour > 11) {
+                    let newTime = (intHour - 12) + ':00';
+                    times[i].textContent = newTime;
+                }
+                times[i].classList.remove('fade');
+                }, 300);
+
             }
+        isDay = false;
         }
+        
     }
     function switchDay() {
-        let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
-        for (i = 0; i < times.length; i++) {
-            times[i].textContent = `${i + 8}` + ':00';
+        if (!isDay) {
+            let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
+            for (let i = 0; i < times.length; i++) {
+               times[i].classList.add('fade');
+               setTimeout(function () {
+                   times[i].textContent = `${i + 8}` + ':00';
+                   times[i].classList.remove('fade')
+               }, 300);
+            
+            }
+            isDay = true;
         }
+        
+            
+        
     }
 
 }); 
