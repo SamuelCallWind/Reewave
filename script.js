@@ -22,6 +22,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             bars[i].style.animation = 'reverseRotate360 1s alternate';
         }
     });
+    sideBar.addEventListener('click', displaySideBar);
+
+    function displaySideBar() {
+        let fullSideBar = document.querySelector('.sideBar');
+        fullSideBar.style.width = '30%';
+        let returnButton = document.querySelector('.arrow')
+        returnButton.addEventListener('click', function () {
+            fullSideBar.style.width = '0%';
+        });
+    }
     
     const currentDate = new Date();
     let daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
@@ -364,7 +374,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         for (i = 0; i < times.length; i++) {
             let intHour = parseInt(times[i].textContent.split(':')[0]);
             if (intHour <= 11) {
-                let newTime = (intHour + 13) + ':00';
+                let newTime = (intHour + 12) + ':00';
                 times[i].textContent = newTime;
             } else if (intHour > 11) {
                 let newTime = (intHour - 12) + ':00';
