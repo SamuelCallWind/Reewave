@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function displaySideBar() {
         let fullSideBar = document.querySelector('.sideBar');
-        fullSideBar.style.width = '30%';
+        fullSideBar.style.width = '40%';
         let returnButton = document.querySelector('.arrow')
         returnButton.addEventListener('click', function () {
             fullSideBar.style.width = '0%';

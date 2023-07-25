@@ -7,8 +7,8 @@ body {
     margin: 0;
 }
 .logo {
-    width: 40px;
-    height: 30px;
+    width: 60px;
+    height: 35px;
     margin-left: 10px;
 }
 a {
@@ -20,11 +20,11 @@ a {
 header {
     height: 100px;
     width: 100%;
-    background: linear-gradient(rgba(7, 14, 24, 0.816) 85%, rgba(23, 46, 78, 0.816) 90%, rgba(249, 249, 249, 0.816));
+    background: linear-gradient(rgba(222, 205, 205, 0.95), rgb(245, 232, 210));
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    color: black;
     box-shadow: 0 10px 100px -100px rgba(0, 0, 0, 0.5);
     text-shadow: 1px 0  orange;
 }
@@ -121,7 +121,7 @@ section.calendar{
 }
 
 .boxDay {
-    background-color: rgb(104, 126, 154);
+    background: linear-gradient(rgba(65, 113, 132, 0.739), rgba(11, 108, 147, 0.59));
     height: 1fr;
     width: 1fr;
     border: solid black 2px;
