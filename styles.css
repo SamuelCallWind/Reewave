@@ -127,6 +127,7 @@ to look smoother. Need to implement the return if user stops hovering */
 }
 
 .boxDay {
+    position: relative;
     background: linear-gradient(rgba(65, 113, 132, 0.739), rgba(11, 108, 147, 0.59));
     height: 1fr;
     width: 1fr;
@@ -144,6 +145,55 @@ to look smoother. Need to implement the return if user stops hovering */
     background-color: rgba(240, 248, 255, 0.717);
     text-shadow: 1px 2px rgb(114, 114, 114);
     animation: shake 0.1s 2;
+}
+.cornerBox{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    background-color: none;
+    width: 2.5vh;
+    height: 2.5vh;
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+}
+.cornerBox:hover {
+    opacity: 1;
+}
+.checkCornerBox {
+    position: absolute;
+    top: 5%;
+    background-color: red;
+    width: 10%;
+    border-radius: 50px;
+}
+.cornerBox:hover .checkCornerBox:nth-child(odd) {
+    right: 0;
+    animation: crossAnimation 0.8s ease-in-out forwards;
+    transform-origin: top right;
+    transform: rotate(45deg);
+}
+.cornerBox:hover .checkCornerBox:nth-child(even) { 
+    left: 0;
+    animation: crossAnimationNegative 0.8s ease-in-out forwards;
+    animation-delay: 0.2s;
+    transform-origin: top left;
+    transform: rotate(-45deg);
+}
+@keyframes crossAnimation {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 130%;
+    }
+}
+@keyframes crossAnimationNegative {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 130%;
+    }
 }
 
 .sideBarLi {
@@ -418,16 +468,16 @@ to look smoother. Need to implement the return if user stops hovering */
 
 @keyframes shake {
     0% { transform: translate(0, 0); }
-    25% { transform: translate(-1.5px, 0); }
+    25% { transform: translate(-1px, 0); }
     50% { transform: translate(0, 0); }
-    75% { transform: translate(1.5px, 0); }
+    75% { transform: translate(1px, 0); }
     100% { transform: translate(0, 0); }
 }
 @keyframes shakeSwitches {
     0% { transform: skew(-20deg) translate(0, 0); }
-    25% { transform: skew(-20deg) translate(-1.5px, 0); }
+    25% { transform: skew(-20deg) translate(-1px, 0); }
     50% { transform: skew(-20deg) translate(0, 0); }
-    75% { transform: skew(-20deg) translate(1.5px, 0); }
+    75% { transform: skew(-20deg) translate(1px, 0); }
     100% { transform: skew(-20deg) translate(0, 0); }
 }
 

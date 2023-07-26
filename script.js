@@ -52,7 +52,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
         for (i = 0; i < daysInMonth; i++) {
             dayBoxes[i].innerHTML = i + 1;
             dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
-            dayBoxes[i]
+            let checkCornerBox = document.createElement('div');
+            let checkCornerBox2 = document.createElement('div');
+            let cornerBox = document.createElement('button');
+            cornerBox.classList.add('cornerBox');
+            checkCornerBox.classList.add('checkCornerBox');
+            checkCornerBox2.classList.add('checkCornerBox');
+            cornerBox.appendChild(checkCornerBox);
+            cornerBox.appendChild(checkCornerBox2);
+            dayBoxes[i].appendChild(cornerBox);
+
             
             dayActivities[i] = new Array();
             nightActivities[i] = new Array();
