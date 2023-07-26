@@ -5,11 +5,23 @@
 body {
     display: flex;
     font-family: 'Patua One', cursive;
+    background: linear-gradient( rgb(245, 236, 210), rgba(249, 249, 249, 0.950));
 }
 input, button {
     font-family: 'Patua One', cursive;
 }
 
+.linkTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    height: 50px;
+    background-color: rgb(255, 227, 181);
+    border-bottom: solid brown 3px;
+    border-right: solid brown 3px;
+    border-bottom-right-radius: 5px;
+}
 .LeftSideBar {
     width: 20%;
     height: 99.5vh;

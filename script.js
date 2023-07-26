@@ -52,7 +52,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     for (i = 0; i < daysInMonth; i++) {
         dayBoxes[i].innerHTML = i + 1;
         dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
-        
+        dayActivities[i] = new Array();
+        nightActivities[i] = new Array();
     }
 
     function errorMessageActivity(messageToDisplay) {
@@ -207,10 +208,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }, 3000);
 
             //Saving every box created in the day/night variable
+            let dayInNumber = document.querySelector('.dayBoxGrow h1').textContent.split(' ')[2];
             if (isDay) {
-                newBox.querySelectorAll('.boxActivity').forEach(element => dayActivities.push(element));
+                newBox.querySelectorAll('.boxActivity').forEach(element => dayActivities[dayInNumber].push(element));
             } else {
-                newBox.querySelectorAll('.boxActivity').forEach(element => nightActivities.push(element));
+                newBox.querySelectorAll('.boxActivity').forEach(element => nightActivities[dayInNumber].push(element));
             }
             
         });
@@ -408,9 +410,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         
         //Removing all the boxes in the Newbox before appending the saved ones
         newBox.querySelectorAll('.boxActivity').forEach(element => element.remove());
-
-        nightActivities.forEach(element => newBox.appendChild(element));
         
+
+        let dayInNumber = document.querySelector('.dayBoxGrow h1').textContent.split(' ')[2];
+        
+        nightActivities[dayInNumber].forEach(element => newBox.appendChild(element));
     }
 
 
@@ -425,12 +429,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
                }, 300);
             
             }
+            newBox.querySelectorAll('.boxActivity').forEach(element => element.remove());
             isDay = true;
         }
         //Removing all the boxes in the Newbox before appending the saved ones
-        newBox.querySelectorAll('.boxActivity').forEach(element => element.remove());
+        
 
-        dayActivities.forEach(element => newBox.appendChild(element));
+        let dayInNumber = document.querySelector('.dayBoxGrow h1').textContent.split(' ')[2];
+        dayActivities[dayInNumber].forEach(element => newBox.appendChild(element));
         
             
         
