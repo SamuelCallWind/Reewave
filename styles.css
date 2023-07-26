@@ -20,7 +20,7 @@ a {
 header {
     height: 100px;
     width: 100%;
-    background: linear-gradient(rgba(222, 205, 205, 0.95), rgb(245, 232, 210));
+    background: linear-gradient(rgba(222, 205, 205, 0.95) 10%, rgb(245, 232, 210) 70%, rgba(249, 249, 249, 0.816) 100%);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -105,14 +105,13 @@ to look smoother. Need to implement the return if user stops hovering */
 }
 
 
-
-section.calendar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.displayMonthDay {
+    margin-left: 4vw;
+    font-size: 3vw;
 }
+
 .calendarGrid {
-    margin: 2em;
+    margin: 2vw;
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(7, minmax(0, 200px));
@@ -258,7 +257,7 @@ section.calendar{
     border-radius: 5px;
 }
 
-.addNewButton {
+.addActivityButton {
     position: absolute;
     top: 15%;
     left: 2%;
@@ -332,7 +331,7 @@ section.calendar{
     font-size: 2.3vh;
 }
 
-h1 {
+.dayBoxGrow h1 {
     color: white;
     margin-left: 1em;
 }

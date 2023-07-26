@@ -56,6 +56,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
         nightActivities[i] = new Array();
     }
 
+    function displayDay() {
+        let displayMonthDay = document.createElement('h1');
+        let calendar = document.querySelector('.calendar');
+        displayMonthDay.textContent = currentMonth + ' ' + currentDate.toString().split(' ')[2];
+        displayMonthDay.classList.add('displayMonthDay');
+        calendar.prepend(displayMonthDay);
+    }
+    
+    displayDay();
+
     function errorMessageActivity(messageToDisplay) {
         let errorMessage = document.createElement('div');
         errorMessage.classList = 'errorMessage';
@@ -116,7 +126,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function createSelectActivity() {
         let buttonAddActivity = document.createElement('button');
         buttonAddActivity.innerHTML = 'Add Activity';
-        buttonAddActivity.classList = 'addNewButton';
+        buttonAddActivity.classList = 'addActivityButton';
         let isActive = false;
         buttonAddActivity.addEventListener('click', () => {
             if (!isActive) {
@@ -362,10 +372,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     function deleteElements() {
         let saveChangesElem = newBox.querySelector('.saveChanges');
-        let addNewButtonElem = newBox.querySelector('.addNewButton');
+        let addActivityButtonElem = newBox.querySelector('.addActivityButton');
         let closeButtonElem = newBox.querySelector('.closeButton');
         if(saveChangesElem) saveChangesElem.remove();
-        if(addNewButtonElem) addNewButtonElem.remove();
+        if(addActivityButtonElem) addActivityButtonElem.remove();
         if(closeButtonElem) closeButtonElem.remove();
     }
 
