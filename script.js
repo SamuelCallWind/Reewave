@@ -9,6 +9,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     let boxData = new Array(daysInMonth).fill(null);
     let boxIndex;
     let isDay = true;
+    let dayActivities = [];
+    let nightActivities = [];
+    
     
     //making sure the animation for the sidebar doesn't start
     let bars = document.querySelectorAll('.oneBar');
@@ -321,7 +324,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.innerHTML = inputUser;
-                boxActivity.classList.add(`${inputUser}`);
+                boxActivity.classList.add(`${inputUser}`.split(' ').join('_'));
                 
             } else if ((parseInt(lengthActivity) + parseInt(timeActivity)) < 8 || (parseInt(lengthActivity) + parseInt(timeActivity)) > 20) {
                 let radioElements = document.querySelector('.mainDivLabelActivity');
@@ -343,6 +346,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             document.querySelector('.mainDivLabelActivity').remove();
             newBox.appendChild(boxActivity);  
+
+            if (isDay) {
+                dayActivities.push(boxActivity);
+            } else {
+                nightActivities.push(boxActivity);
+            }
         }
     }
 
@@ -372,6 +381,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     
     
+
     function switchNight() {
         if (isDay){
             let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
@@ -393,7 +403,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
         isDay = false;
         }
         
+        //Removing all the boxes in the Newbox before appending the saved ones
+        newBox.querySelectorAll('.boxActivity').forEach(element => element.remove());
+
+        nightActivities.forEach(element => newBox.appendChild(element));
+        
     }
+
+
     function switchDay() {
         if (!isDay) {
             let times = Array.from(document.querySelectorAll('.hourVerticalLine'));
@@ -407,6 +424,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             }
             isDay = true;
         }
+        //Removing all the boxes in the Newbox before appending the saved ones
+        newBox.querySelectorAll('.boxActivity').forEach(element => element.remove());
+
+        dayActivities.forEach(element => newBox.appendChild(element));
         
             
         
