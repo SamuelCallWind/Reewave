@@ -205,6 +205,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             setTimeout(function() {
                 saveMessage.remove();
             }, 3000);
+
+            //Saving every box created in the day/night variable
+            if (isDay) {
+                newBox.querySelectorAll('.boxActivity').forEach(element => dayActivities.push(element));
+            } else {
+                newBox.querySelectorAll('.boxActivity').forEach(element => nightActivities.push(element));
+            }
+            
         });
         newBox.appendChild(saveButton);
     }
@@ -347,11 +355,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             document.querySelector('.mainDivLabelActivity').remove();
             newBox.appendChild(boxActivity);  
 
-            if (isDay) {
-                dayActivities.push(boxActivity);
-            } else {
-                nightActivities.push(boxActivity);
-            }
         }
     }
 
