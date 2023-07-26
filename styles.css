@@ -104,10 +104,17 @@ to look smoother. Need to implement the return if user stops hovering */
     filter: invert(0.5);
 }
 
+.calendar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .displayMonthDay {
     margin-left: 4vw;
-    font-size: 3vw;
+    font-size: 30px;
+    align-self: left;
 }
 
 .calendarGrid {

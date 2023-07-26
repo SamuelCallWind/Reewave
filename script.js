@@ -48,13 +48,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     
     
-
-    for (i = 0; i < daysInMonth; i++) {
-        dayBoxes[i].innerHTML = i + 1;
-        dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
-        dayActivities[i] = new Array();
-        nightActivities[i] = new Array();
+    function createEveryDayBox() {
+        for (i = 0; i < daysInMonth; i++) {
+            dayBoxes[i].innerHTML = i + 1;
+            dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
+            dayBoxes[i]
+            
+            dayActivities[i] = new Array();
+            nightActivities[i] = new Array();
+        }
     }
+    createEveryDayBox()
 
     function displayDay() {
         let displayMonthDay = document.createElement('h1');
@@ -333,7 +337,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.style.width = '1.87%';
                 boxActivity.style.height = getPriorityActivity(getSelectedOption());
                 // Taking the same left property as the vertical bars to have the numbers approx. at the same place : `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
-                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`; // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
+                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.40 + 5}%`; // the "-8" is for the 8 hours as the beginning of the line is at the 8th hour 
                 boxActivity.innerHTML = inputUser;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.classList.add(`${inputUser}`);
@@ -341,7 +345,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 boxActivity.style.width = '3.74%';
                 boxActivity.style.transition = 'height 0.5s ease';
                 boxActivity.style.height = getPriorityActivity(getSelectedOption());
-                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.40 + 5}%`;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.innerHTML = inputUser;
                 boxActivity.classList.add(`${inputUser}`.split(' ').join('_'));
@@ -358,7 +362,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else {
                 boxActivity.style.width = `${lengthActivity * 7.48}%`;
                 boxActivity.style.height = getPriorityActivity(getSelectedOption());
-                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.48 + 5}%`;
+                boxActivity.style.left = `${(parseInt(timeActivity) - 8) * 7.40 + 5}%`;
                 boxActivity.style.backgroundColor = getRandomColor();
                 boxActivity.innerHTML = inputUser;
                 boxActivity.classList.add(`${inputUser}`);
