@@ -139,6 +139,7 @@ to look smoother. Need to implement the return if user stops hovering */
     cursor: pointer;
     user-select: none;
     box-shadow: 3px 3px 5px rgb(8, 23, 33);
+    z-index: 0;
 }
 .boxDay:hover {
     color: black;
@@ -155,6 +156,7 @@ to look smoother. Need to implement the return if user stops hovering */
     height: 2.5vh;
     opacity: 0.5;
     transition: opacity 0.3s ease-in-out;
+    z-index: 1;
 }
 .cornerBox:hover {
     opacity: 1;
@@ -162,7 +164,7 @@ to look smoother. Need to implement the return if user stops hovering */
 .checkCornerBox {
     position: absolute;
     top: 5%;
-    background-color: red;
+    background-color: orange;
     width: 10%;
     border-radius: 50px;
 }
@@ -195,6 +197,24 @@ to look smoother. Need to implement the return if user stops hovering */
         height: 130%;
     }
 }
+.checkCornerPopUp {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 15vh; width: 10vw;
+    transform: translate(100%, -100%);
+    background-color: blue;
+    border-radius: 5px;
+    opacity: 1;
+    //animation: slideHeight 1s ease-in-out;
+}
+@keyframes slideHeight {
+    0% { height: 1vh; width: 0 }
+    40% { height: 1vh; width: 10vw;}
+    90% { height: 15vh; width: 10vw; }
+
+}
+
 
 .sideBarLi {
     list-style: none;

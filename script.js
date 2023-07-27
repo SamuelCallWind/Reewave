@@ -51,7 +51,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function createEveryDayBox() {
         for (i = 0; i < daysInMonth; i++) {
             dayBoxes[i].innerHTML = i + 1;
-            dayBoxes[i].addEventListener('click', (e) => dayBoxGrow(e));
+            dayBoxes[i].addEventListener('click', function (e) {
+                 dayBoxGrow(e);
+                });
             let checkCornerBox = document.createElement('div');
             let checkCornerBox2 = document.createElement('div');
             let cornerBox = document.createElement('button');
@@ -61,6 +63,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
             cornerBox.appendChild(checkCornerBox);
             cornerBox.appendChild(checkCornerBox2);
             dayBoxes[i].appendChild(cornerBox);
+            cornerBox.addEventListener('click', function (event) {
+                event.stopPropagation();
+                if (document.querySelector('.checkCornerPopUp')) {
+                    document.querySelector('.checkCornerPopUp').remove();
+                }  
+                let newPopUp = document.createElement('div');
+                newPopUp.classList.add('checkCornerPopUp');
+                cornerBox.appendChild(newPopUp);
+                
+                let rect = newPopUp.getBoundingClientRect();
+                let overFlowRight = rect.right > window.innerWidth;
+                let overFlowBottom = rect.bottom > window.innerHeight;
+
+                if (overFlowBottom || overFlowRight) {
+                    newPopUp.style.transform = 'none';
+                }
+            });
 
             
             dayActivities[i] = new Array();
