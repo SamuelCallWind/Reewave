@@ -206,7 +206,8 @@ to look smoother. Need to implement the return if user stops hovering */
     background-color: blue;
     border-radius: 5px;
     opacity: 1;
-    //animation: slideHeight 1s ease-in-out;
+    animation: slideHeight 1s ease-in-out;
+
 }
 @keyframes slideHeight {
     0% { height: 1vh; width: 0 }

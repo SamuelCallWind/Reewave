@@ -68,17 +68,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (document.querySelector('.checkCornerPopUp')) {
                     document.querySelector('.checkCornerPopUp').remove();
                 }  
+                // Need to calculate the size of the screen and the future popup
+                //so that it knows if the popup overflow and then 
+                //launch the animation accordingly
+                let approximateWidth = window.innerWidth * 0.1 //Because the width of the box is 10vw
+                let approximateHeight = window.innerHeight * 0.15 //For 15vh
+
+                let parentRect = cornerBox.getBoundingClientRect();
+
+                let overflowRight = parentRect.right + approximateWidth > window.innerWidth;
+                let overflowBottom = parentRect.top + approximateHeight > window.innerHeight;
+
                 let newPopUp = document.createElement('div');
                 newPopUp.classList.add('checkCornerPopUp');
                 cornerBox.appendChild(newPopUp);
                 
-                let rect = newPopUp.getBoundingClientRect();
-                let overFlowRight = rect.right > window.innerWidth;
-                let overFlowBottom = rect.bottom > window.innerHeight;
-
-                if (overFlowBottom || overFlowRight) {
+                // let rect = newPopUp.getBoundingClientRect();
+                // let overFlowRight = rect.right > window.innerWidth;
+                // let overFlowBottom = rect.bottom > window.innerHeight;
+                
+                if (overflowBottom || overflowRight) {
                     newPopUp.style.transform = 'none';
                 }
+                
             });
 
             
