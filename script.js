@@ -83,12 +83,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 newPopUp.classList.add('checkCornerPopUp');
                 cornerBox.appendChild(newPopUp);
                 
-                // let rect = newPopUp.getBoundingClientRect();
-                // let overFlowRight = rect.right > window.innerWidth;
-                // let overFlowBottom = rect.bottom > window.innerHeight;
-                
                 if (overflowBottom || overflowRight) {
-                    newPopUp.style.transform = 'none';
+                    newPopUp.style.transform = 'translate(-20%, -100%)';
                 }
                 
             });
@@ -122,6 +118,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function dayBoxGrow(e) {
+        
         boxIndex = parseInt(e.target.innerHTML, 10) - 1;
         if (boxData[boxIndex]) {
             calendar.removeChild(newBox);
@@ -151,6 +148,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             createSaveButton();
             createSelectActivity();
+            if (newBox.querySelector('.cornerBox')) {
+                newBox.querySelector('.cornerBox').remove(); 
+            };
         }
         calendar.appendChild(newBox);
         removeErrorMessages();
