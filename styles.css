@@ -225,19 +225,25 @@ to look smoother. Need to implement the return if user stops hovering */
     90% { height: 1.15em; width: 10vw; }
 }
 .checkCornerPopUp p {
+    opacity: 0; 
     width: 100%;
     border: 2px solid black;
     margin: 0;
-    animation: slideText 1s ease-in-out;
+    animation: slideText 1s ease-in-out forwards;
 
 }
 /* Need to create another Keyframe to let the text appear sliding*/
 @keyframes slideText {
     0% { 
+        opacity: 0; 
         clip-path: polygon(0 0, 0 100%, 0% 100%, 0% 0); 
+    }
+    10% {
+        opacity: 1; 
     }
     100% { 
         clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0); 
+        opacity: 1; 
     }
 }
 .sideBarLi {

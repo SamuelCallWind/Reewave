@@ -86,10 +86,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (overflowBottom || overflowRight) {
                     newPopUp.style.transform = 'translate(-20%, -100%)';
                 }
-                // setTimeout(function () {
-                //     addParagraphs(newPopUp, 3, 'This is a test', 'test', 'test again');
-                // }, 1000);
-                addParagraphs(newPopUp, 3, 'This is a test', 'test', 'test again');
+                setTimeout(function () {
+                    addParagraphs(newPopUp, 3, 'This is a test', 'test', 'test again');
+                }, 800);
+                
             });
 
             
@@ -104,11 +104,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let addDelay = 0.2;
         for (i = 0; i < numberOfParagraphs; i++) {
             let newParagraph = document.createElement('p');
+            parentElement.appendChild(newParagraph);
             newParagraph.textContent = paragraphContent[i];
             newParagraph.style.animationDelay = delay + 's';
-            parentElement.appendChild(newParagraph);
+            newParagraph.style.visibility = 'visible';
             delay += addDelay;
-            
         }
     }
 
