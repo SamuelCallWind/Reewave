@@ -5,6 +5,7 @@
 body {
     background-color: rgba(249, 249, 249, 0.816);
     margin: 0;
+    height: 100vh;
 }
 .logo {
     width: 60px;
@@ -128,17 +129,17 @@ to look smoother. Need to implement the return if user stops hovering */
 
 .boxDay {
     position: relative;
-    background: linear-gradient(rgba(65, 113, 132, 0.739), rgba(11, 108, 147, 0.59));
+    background-color: none;
     height: 1fr;
     width: 1fr;
     border: solid black 2px;
     border-radius: 3px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 2em;
     transition: .2s ease-in-out;
     cursor: pointer;
     user-select: none;
-    box-shadow: 3px 3px 5px rgb(8, 23, 33);;
+    box-shadow: 1px 3px 5px rgb(8, 23, 33);;
 }
 .boxDay:hover {
     color: black;
@@ -203,12 +204,10 @@ to look smoother. Need to implement the return if user stops hovering */
     position: absolute;
     top: 0;
     right: 0;
-    height: 15vh; width: 10vw;
+    height: auto; width: 10vw;
     transform: translate(100%, -100%);
-    background-color: white;
-    border: solid 2px black;
     border-radius: 5px;
-    animation: slideHeight 1s ease-in-out;
+    animation: slideHeight 0.1s ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -216,21 +215,25 @@ to look smoother. Need to implement the return if user stops hovering */
 }
 @keyframes slideHeight {
     0% { height: 1vh; width: 0 }
-    40% { height: 1vh; width: 10vw;}
-    90% { height: 15vh; width: 10vw; }
-
-}
-@keyframes slideWidth {
-    0% { height: 1em; width: 0 }
-    90% { height: 1.15em; width: 10vw; }
+    40% { height: 5vh; width: 10vw;}
+    90% { height: 5vh; width: 10vw; }
 }
 .checkCornerPopUp p {
+    background: linear-gradient(45deg, rgb(255, 241, 214), rgb(255, 145, 0));
     opacity: 0; 
     width: 100%;
-    border: 2px solid black;
-    margin: 0;
+    margin: 0.3vh;
     animation: slideText 1s ease-in-out forwards;
-
+    border-radius: 0 5px 5px 0;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+.checkCornerPopUp p:nth-child(5) {
+    margin-bottom: 1vh;
+}
+.checkCornerPopUp p:hover {
+    background-color: gray;
+    color: rgb(91, 91, 91);
 }
 /* Need to create another Keyframe to let the text appear sliding*/
 @keyframes slideText {

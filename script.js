@@ -86,9 +86,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (overflowBottom || overflowRight) {
                     newPopUp.style.transform = 'translate(-20%, -100%)';
                 }
-                setTimeout(function () {
-                    addParagraphs(newPopUp, 3, 'This is a test', 'test', 'test again');
-                }, 800);
+                if (document.querySelector('.checkCornerPopUp')) {
+                    setTimeout(function () {
+                        addParagraphs(newPopUp, dayBoxes[i], 'Holidays', 'Week-end', 'Remote Work', 'Volunteering', 'Special Event');
+                    }, 100);
+                }
+                // If user clicks somewhere else, remove the popup
+                document.addEventListener('click', function () {
+                    if (document.querySelector('.checkCornerPopUp')) {
+                        document.querySelector('.checkCornerPopUp').remove();
+                    }
+                })
                 
             });
 
@@ -99,15 +107,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     createEveryDayBox()
 
-    function addParagraphs(parentElement, numberOfParagraphs, ...paragraphContent) {
+    function addParagraphs(parentElement, dayBoxes, ...paragraphContent) {
         let delay = 0;
         let addDelay = 0.2;
-        for (i = 0; i < numberOfParagraphs; i++) {
+        for (i = 0; i < paragraphContent.length; i++) {
             let newParagraph = document.createElement('p');
             parentElement.appendChild(newParagraph);
             newParagraph.textContent = paragraphContent[i];
             newParagraph.style.animationDelay = delay + 's';
             newParagraph.style.visibility = 'visible';
+            newParagraph.addEventListener('click', function () {
+                dayBoxes = changeDayBoxColor(dayBoxes, newParagraph.textContent);
+            });
             delay += addDelay;
         }
     }
@@ -132,6 +143,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
             errorMessage.remove()
         }, 5000);
     }
+
+function changeDayBoxColor(dayBoxes, elementClicked) {
+    if (elementClicked === 'Holidays') {
+        dayBoxes.style.background = 'linear-gradient(rgba(247, 179, 53, 0.739), rgba(229, 240, 148, 0.59))';
+    }
+    //'Week-end', 'Remote Work', 'Volunteering', 'Special Event';
+}
+
 
     function dayBoxGrow(e) {
         
