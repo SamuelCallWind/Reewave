@@ -88,7 +88,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 }
                 if (document.querySelector('.checkCornerPopUp')) {
                     setTimeout(function () {
-                        addParagraphs(newPopUp, dayBoxes[i], 'Holidays', 'Week-end', 'Remote Work', 'Volunteering', 'Special Event');
+                        addParagraphs(newPopUp, 'Holidays', 'Week-end', 'Remote Work', 'Volunteering', 'Special Event');
                     }, 100);
                 }
                 // If user clicks somewhere else, remove the popup
@@ -107,7 +107,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     createEveryDayBox()
 
-    function addParagraphs(parentElement, dayBoxes, ...paragraphContent) {
+    function addParagraphs(parentElement, ...paragraphContent) {
         let delay = 0;
         let addDelay = 0.2;
         for (i = 0; i < paragraphContent.length; i++) {
@@ -117,7 +117,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newParagraph.style.animationDelay = delay + 's';
             newParagraph.style.visibility = 'visible';
             newParagraph.addEventListener('click', function () {
-                dayBoxes = changeDayBoxColor(dayBoxes, newParagraph.textContent);
+                let parent = document.querySelector('.checkCornerPopUp').parentNode;
+                let grandParent = parent.parentNode;
+                grandParent.style.background = changeDayBoxColor(newParagraph.textContent);
             });
             delay += addDelay;
         }
@@ -144,9 +146,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }, 5000);
     }
 
-function changeDayBoxColor(dayBoxes, elementClicked) {
+function changeDayBoxColor(elementClicked) {
     if (elementClicked === 'Holidays') {
-        dayBoxes.style.background = 'linear-gradient(rgba(247, 179, 53, 0.739), rgba(229, 240, 148, 0.59))';
+        return 'linear-gradient(rgba(247, 179, 53, 0.739), rgba(229, 240, 148, 0.59))';
     }
     //'Week-end', 'Remote Work', 'Volunteering', 'Special Event';
 }
