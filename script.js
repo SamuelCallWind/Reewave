@@ -149,8 +149,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function changeDayBoxColor(elementClicked) {
     if (elementClicked === 'Holidays') {
         return 'linear-gradient(rgba(247, 179, 53, 0.739), rgba(229, 240, 148, 0.59))';
+    } else if (elementClicked === 'Week-end') {
+        return 'linear-gradient(rgba(255, 8, 0, 0.288), rgba(241, 84, 78, 0.26))';
+    } else if (elementClicked === 'Remote Work') {
+        return 'linear-gradient(rgb(42, 114, 42), rgb(126, 167, 99))';
+    } else if (elementClicked === 'Volunteering') {
+        return 'linear-gradient(rgb(201, 152, 247), rgb(165, 30, 158))';
+    } else if (elementClicked === 'Special Event') {
+        return 'linear-gradient(rgba(255, 0, 0, 0.699) 20%, rgba(255, 174, 0, 0.781) 40%, rgba(0, 164, 214, 0.726) 60%, rgb(12, 204, 211) 100%)';
     }
-    //'Week-end', 'Remote Work', 'Volunteering', 'Special Event';
 }
 
 
