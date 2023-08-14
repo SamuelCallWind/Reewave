@@ -116,10 +116,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newParagraph.textContent = paragraphContent[i];
             newParagraph.style.animationDelay = delay + 's';
             newParagraph.style.visibility = 'visible';
-            newParagraph.addEventListener('click', function () {
+            newParagraph.addEventListener('click', function (event) {
                 let parent = document.querySelector('.checkCornerPopUp').parentNode;
                 let grandParent = parent.parentNode;
                 grandParent.style.background = changeDayBoxColor(newParagraph.textContent);
+                event.stopPropagation();
+                document.querySelector('.checkCornerPopUp').remove();
             });
             delay += addDelay;
         }
