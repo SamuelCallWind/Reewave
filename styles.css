@@ -104,6 +104,18 @@ to look smoother. Need to implement the return if user stops hovering */
 .arrow:hover {
     filter: invert(0.5);
 }
+.users {
+    position: absolute;
+    right: 5%;
+    height: 3%;
+    width: 50%;
+    background-color: blue;
+    border-radius: 5px;
+}
+.addUsersSideBar {
+
+}
+
 
 .calendar {
     display: flex;
@@ -313,8 +325,8 @@ to look smoother. Need to implement the return if user stops hovering */
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.26);
 }
 .cross {
-    margin-top: 20%;
-    font-size: 150%;
+    margin-top: 5%;
+    font-size: 100%;
 }
 .switchButtonOne, .switchButtonTwo, .saveChanges {
     position: absolute;
@@ -442,7 +454,8 @@ to look smoother. Need to implement the return if user stops hovering */
 }
 
 .labelActivity {
-    font-size: 2.3vh;
+    font-size: 2.3vw;
+    color: white;
 }
 
 .dayBoxGrow h1 {

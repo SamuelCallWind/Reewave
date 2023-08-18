@@ -45,6 +45,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         returnButton.addEventListener('click', function () {
             fullSideBar.style.width = '0%';
         });
+        let users = document.createElement('div');
+        users.classList.add('users');
+        fullSideBar.appendChild(users);
+        
     }
     
     
@@ -89,7 +93,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (document.querySelector('.checkCornerPopUp')) {
                     setTimeout(function () {
                         addParagraphs(newPopUp, 'Holidays', 'Week-end', 'Remote Work', 'Volunteering', 'Special Event');
-                    }, 100);
+                    }, 5);
                 }
                 // If user clicks somewhere else, remove the popup
                 document.addEventListener('click', function () {
