@@ -104,16 +104,18 @@ to look smoother. Need to implement the return if user stops hovering */
 .arrow:hover {
     filter: invert(0.5);
 }
-.users {
+.users, .addUsersSideBar {
     position: absolute;
+    top: 20%;
     right: 5%;
     height: 3%;
     width: 50%;
-    background-color: blue;
+    background: linear-gradient(45deg, white, rgb(228, 225, 199));
     border-radius: 5px;
+    border: solid black 1px;
 }
 .addUsersSideBar {
-
+    top: 30%;
 }
 
 

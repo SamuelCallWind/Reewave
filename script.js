@@ -43,12 +43,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
         fullSideBar.style.width = '40%';
         let returnButton = document.querySelector('.arrow')
         returnButton.addEventListener('click', function () {
+            let children = fullSideBar.querySelectorAll('.users');
             fullSideBar.style.width = '0%';
+            setTimeout(function () {
+                for (let i = 0; i < children.length; i++) {
+                    children[i].remove();
+                }
+                document.querySelector('.addUsersSideBar').remove();
+            }, 500)
+            
         });
         let users = document.createElement('div');
+        let addUsersButton = document.createElement('div');
         users.classList.add('users');
+        addUsersButton.classList.add('addUsersSideBar');
         fullSideBar.appendChild(users);
-        
+        fullSideBar.appendChild(addUsersButton);
     }
     
     
