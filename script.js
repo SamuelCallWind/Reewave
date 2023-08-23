@@ -38,23 +38,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
     sideBar.addEventListener('click', displaySideBar);
 
-    function displaySideBar() {
+    function displaySideBar(e) {
         let fullSideBar = document.querySelector('.sideBar');
-        fullSideBar.style.width = '40%';
-        let returnButton = document.querySelector('.arrow')
-        returnButton.addEventListener('click', function () {
-            let children = fullSideBar.querySelectorAll('.users');
-            fullSideBar.style.width = '0%';
-            setTimeout(function () {
-                for (let i = 0; i < children.length; i++) {
-                    children[i].remove();
-                }
-                document.querySelector('.addUsersSideBar').remove();
-            }, 500)
-            
-        });
         let users = document.createElement('div');
         let addUsersButton = document.createElement('div');
+        let returnButton = document.querySelector('.arrow');
+        fullSideBar.style.width = '40%';
+        returnButton.addEventListener('click', function () {
+            closeSideBar(fullSideBar);
+        });
+        
         users.classList.add('users');
         addUsersButton.classList.add('addUsersSideBar');
         addUsersButton.textContent =  '+'; 
@@ -63,6 +56,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
         fullSideBar.appendChild(users);
         fullSideBar.appendChild(addUsersButton);
+        e.stopPropagation()
+        //Adding the possibility to click somewhere else to close the sidebar
+        document.addEventListener('click', function(event) {
+            if (!fullSideBar.contains(event.target) && fullSideBar !== event.target) {
+                closeSideBar(fullSideBar);
+            }
+        });
+    }
+
+    function closeSideBar(fullSideBar) {
+        let children = fullSideBar.querySelectorAll('.users');
+        fullSideBar.style.width = '0%';
+        setTimeout(function () {
+            for (let i = 0; i < children.length; i++) {
+                children[i].remove();
+                }
+                document.querySelector('.addUsersSideBar').remove();
+        }, 500);
     }
     
     function addNewUser(plusElement) {
@@ -73,9 +84,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
         plusButton.style.top = parseInt((plusButton.style.top).split('%')[0]) + 5 + '%';
         plusElement.style.top = parseInt((plusElement.style.top).split('%')[0]) + 5 + '%';
         // Need to get the height element in a num form and add 5%
+        //!! the style.top doesn't work, need to calculate the page height
+        //!! to be able to use the "getComputedStyle" to work
+
         // Will need later to add an if statement if the size is over 100%
         // and change the size of every box and the general % of height
-        console.log('5');
+        console.log('5'); // just a test for the console
     }
 
     function createEveryDayBox() {
