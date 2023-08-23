@@ -110,14 +110,18 @@ to look smoother. Need to implement the return if user stops hovering */
     right: 5%;
     height: 3%;
     width: 50%;
-    background: linear-gradient(45deg, white, rgb(228, 225, 199));
+    text-align: center;
+    line-height: 140%;
+    background-color: rgba(0, 84, 157, 0.424);
     border-radius: 5px;
-    border: solid black 1px;
+    transition: background-color 0.3s ease-in-out;
 }
 .addUsersSideBar {
-    top: 30%;
+    top: 25%;
 }
-
+.addUsersSideBar:hover, .users:hover {
+    background-color: rgba(0, 84, 157, 0.764);
+}
 
 .calendar {
     display: flex;

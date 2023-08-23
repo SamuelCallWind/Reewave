@@ -57,11 +57,27 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let addUsersButton = document.createElement('div');
         users.classList.add('users');
         addUsersButton.classList.add('addUsersSideBar');
+        addUsersButton.textContent =  '+'; 
+        addUsersButton.addEventListener('click', function () {
+            addNewUser(addUsersButton);
+        });
         fullSideBar.appendChild(users);
         fullSideBar.appendChild(addUsersButton);
     }
     
-    
+    function addNewUser(plusElement) {
+        let newUserBox = document.createElement('div');
+        newUserBox.classList.add('users');
+        newUserBox.style.top = plusElement.style.top;
+        let plusButton = document.querySelector('.addUsersSideBar');
+        plusButton.style.top = parseInt((plusButton.style.top).split('%')[0]) + 5 + '%';
+        plusElement.style.top = parseInt((plusElement.style.top).split('%')[0]) + 5 + '%';
+        // Need to get the height element in a num form and add 5%
+        // Will need later to add an if statement if the size is over 100%
+        // and change the size of every box and the general % of height
+        console.log('5');
+    }
+
     function createEveryDayBox() {
         for (i = 0; i < daysInMonth; i++) {
             dayBoxes[i].innerHTML = i + 1;
