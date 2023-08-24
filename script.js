@@ -58,11 +58,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         fullSideBar.appendChild(addUsersButton);
         e.stopPropagation()
         //Adding the possibility to click somewhere else to close the sidebar
-        document.addEventListener('click', function(event) {
+
+        function sideBarOutsideClick(event) {
             if (!fullSideBar.contains(event.target) && fullSideBar !== event.target) {
                 closeSideBar(fullSideBar);
             }
-        });
+            document.removeEventListener('click', sideBarOutsideClick);
+        }
+
+        document.addEventListener('click', sideBarOutsideClick);
     }
 
     function closeSideBar(fullSideBar) {
