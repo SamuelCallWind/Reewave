@@ -78,7 +78,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         newElement.classList.add('users');
         newElement.style.position = 'absolute';
         newElement.style.top = rect.top + 'px';
-        newElement.style.left = rect.left + 'px';
+        newElement.style.left = rect.left / 4.33902816875 + 'px';
         sidebar.appendChild(newElement); 
     }
 
