@@ -52,7 +52,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         addUsersButton.classList.add('addUsersSideBar');
         addUsersButton.textContent =  '+'; 
         addUsersButton.addEventListener('click', function () {
-            addNewUser(addUsersButton);
+            createUsersElement(addUsersButton);
+            moveElementDown(addUsersButton);
         });
         fullSideBar.appendChild(users);
         fullSideBar.appendChild(addUsersButton);
@@ -68,6 +69,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
         document.addEventListener('click', sideBarOutsideClick);
     }
+
+    function createUsersElement(element) {
+        let rect = element.getBoundingClientRect();
+        let newElement = document.createElement('div');
+        let sidebar = document.querySelector('.sideBar');
+
+        newElement.classList.add('users');
+        newElement.style.position = 'absolute';
+        newElement.style.top = rect.top + 'px';
+        newElement.style.left = rect.left + 'px';
+        sidebar.appendChild(newElement); 
+    }
+
+    function moveElementDown(element) {
+        let pageHeight = window.innerHeight || document.documentElement.height;
+        let goDownPercent = (pageHeight) * 0.05;
+
+        let rect = element.getBoundingClientRect();
+        let newTop = rect.top + goDownPercent;
+
+        element.style.top = newTop + 'px';
+
+    }
+
+
 
     function closeSideBar(fullSideBar) {
         let children = fullSideBar.querySelectorAll('.users');
