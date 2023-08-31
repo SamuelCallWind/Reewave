@@ -267,6 +267,15 @@ to look smoother. Need to implement the return if user stops hovering */
         opacity: 1; 
     }
 }
+
+.saveCalendar {
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+    height: 5%;
+    -webkit-column-width: 5%;
+}
+
 .sideBarLi {
     list-style: none;
 }
