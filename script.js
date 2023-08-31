@@ -79,15 +79,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         newElement.style.position = 'absolute';
         newElement.style.top = rect.top + 'px';
         newElement.style.right = '5%';
-                                            // This number was calculated manually after moving the new element a few times
         newElement.textContent = 'Add a name';
+
         newElement.addEventListener('click', function () {
             let newInput = document.createElement('input');
             newInput.placeholder = 'Name';
+            newElement.appendChild(newInput);
             newInput.focus();
 
             newInput.addEventListener('blur', function () {
-                newElement.textContent = newInput.textContent;
+                if (newInput.value) {
+                    newElement.textContent = newInput.value;
+                }
+                newElement.removeChild(newInput);
             });
         });
         sidebar.appendChild(newElement); 
