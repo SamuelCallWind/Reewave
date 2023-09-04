@@ -134,6 +134,11 @@ to look smoother. Need to implement the return if user stops hovering */
     background-color: rgba(0, 84, 157, 0.764);
 }
 
+.deleteUser {
+    position: absolute;
+    left: 5%;
+}
+
 .calendar {
     display: flex;
     flex-direction: column;

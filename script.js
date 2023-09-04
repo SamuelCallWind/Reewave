@@ -74,6 +74,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let rect = element.getBoundingClientRect();
         let newElement = document.createElement('div');
         let sidebar = document.querySelector('.sideBar');
+        let deleteButton = document.createElement('button');
+
+        deleteButton.classList.add('deleteUser');
+        deleteButton.style.top = rect.top + 'px';
+        deleteButton.textContent = 'Remove';
 
         newElement.classList.add('users');
         newElement.style.position = 'absolute';
@@ -91,10 +96,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 if (newInput.value) {
                     newElement.textContent = newInput.value;
                 }
-                newElement.removeChild(newInput);
             });
         });
         sidebar.appendChild(newElement); 
+        sidebar.appendChild(deleteButton);
     }
 
     function moveElementDown(element) {
@@ -116,7 +121,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
         setTimeout(function () {
             for (let i = 0; i < children.length; i++) {
                 children[i].remove();
+                let deleteButton = fullSideBar.querySelector('.deleteUser');
+                if (deleteButton) {
+                    fullSideBar.removeChild(deleteButton);
                 }
+            }
                 document.querySelector('.addUsersSideBar').remove();
         }, 500);
     }
