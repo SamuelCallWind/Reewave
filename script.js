@@ -39,6 +39,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
     sideBar.addEventListener('click', displaySideBar);
 
     function displaySideBar(e) {
+        
+        function sideBarOutsideClick(event) {
+            if (!fullSideBar.contains(event.target) && fullSideBar !== event.target) {
+                closeSideBar(fullSideBar);
+            }
+            document.removeEventListener('click', sideBarOutsideClick);
+        }
+
+        document.addEventListener('click', sideBarOutsideClick);
+
+
         let fullSideBar = document.querySelector('.sideBar');
         let users = document.createElement('div');
         let addUsersButton = document.createElement('div');
@@ -58,16 +69,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         fullSideBar.appendChild(users);
         fullSideBar.appendChild(addUsersButton);
         e.stopPropagation()
-        //Adding the possibility to click somewhere else to close the sidebar
-
-        function sideBarOutsideClick(event) {
-            if (!fullSideBar.contains(event.target) && fullSideBar !== event.target) {
-                closeSideBar(fullSideBar);
-            }
-            document.removeEventListener('click', sideBarOutsideClick);
-        }
-
-        document.addEventListener('click', sideBarOutsideClick);
     }
 
     function createUsersElement(element) {
@@ -95,6 +96,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
             newInput.addEventListener('blur', function () {
                 if (newInput.value) {
                     newElement.textContent = newInput.value;
+                } else {
+                    newElement.removeChild(newInput);
                 }
             });
         });
@@ -126,25 +129,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     fullSideBar.removeChild(deleteButton);
                 }
             }
+            if (document.querySelector('.addUsersSideBar')) {
                 document.querySelector('.addUsersSideBar').remove();
+            }
         }, 500);
     }
-    
-    function addNewUser(plusElement) {
-        let newUserBox = document.createElement('div');
-        newUserBox.classList.add('users');
-        newUserBox.style.top = plusElement.style.top;
-        let plusButton = document.querySelector('.addUsersSideBar');
-        plusButton.style.top = parseInt((plusButton.style.top).split('%')[0]) + 5 + '%';
-        plusElement.style.top = parseInt((plusElement.style.top).split('%')[0]) + 5 + '%';
-        // Need to get the height element in a num form and add 5%
-        //!! the style.top doesn't work, need to calculate the page height
-        //!! to be able to use the "getComputedStyle" to work
 
-        // Will need later to add an if statement if the size is over 100%
-        // and change the size of every box and the general % of height
-        console.log('5'); // just a test for the console
-    }
+
 
     function createEveryDayBox() {
         for (i = 0; i < daysInMonth; i++) {
@@ -201,6 +192,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
             
             dayActivities[i] = new Array();
             nightActivities[i] = new Array();
+        }
+        // Remove the extra boxes if there are less than 31 days 
+        if (daysInMonth < 31) {
+            let calendar = document.querySelector('.calendarGrid');
+            let extraDays = daysInMonth - 31; //Just to have the negative number
+            let daysToDelete = Array.from(document.querySelectorAll('.boxDay')).slice(extraDays);
+            for (let i = daysToDelete.length - 1; i >= 0; i--) {
+                calendar.removeChild(daysToDelete[i]);
+                console.log('Hello World');
+            }
         }
     }
     createEveryDayBox()
