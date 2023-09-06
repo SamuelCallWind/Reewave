@@ -85,7 +85,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         newElement.style.position = 'absolute';
         newElement.style.top = rect.top + 'px';
         newElement.style.right = '5%';
-        newElement.textContent = 'Add a name';
+        setTimeout(function () {
+            newElement.textContent = 'Add a name';
+        }, 400);
+        
 
         newElement.addEventListener('click', function () {
             let newInput = document.createElement('input');
@@ -100,6 +103,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
                     newElement.removeChild(newInput);
                 }
             });
+        });
+
+        deleteButton.addEventListener('click', function () {
+            sidebar.removeChild(newElement);
+            sidebar.removeChild(deleteButton);
         });
         sidebar.appendChild(newElement); 
         sidebar.appendChild(deleteButton);
@@ -116,6 +124,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     }
 
+    
 
 
     function closeSideBar(fullSideBar) {
