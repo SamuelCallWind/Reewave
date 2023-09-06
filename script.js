@@ -62,7 +62,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         users.classList.add('users');
         addUsersButton.classList.add('addUsersSideBar');
         addUsersButton.textContent =  '+'; 
-        addUsersButton.addEventListener('click', function () {
+        addUsersButton.addEventListener('click', function (event) {
+            event.stopPropagation();
             createUsersElement(addUsersButton);
             moveElementDown(addUsersButton);
         });
@@ -90,7 +91,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }, 400);
         
 
-        newElement.addEventListener('click', function () {
+        newElement.addEventListener('click', function (event) {
+            event.stopPropagation();
             let newInput = document.createElement('input');
             newInput.placeholder = 'Name';
             newElement.appendChild(newInput);
@@ -209,7 +211,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             let daysToDelete = Array.from(document.querySelectorAll('.boxDay')).slice(extraDays);
             for (let i = daysToDelete.length - 1; i >= 0; i--) {
                 calendar.removeChild(daysToDelete[i]);
-                console.log('Hello World');
             }
         }
     }
