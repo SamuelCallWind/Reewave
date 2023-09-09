@@ -41,9 +41,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function displaySideBar(e) {
         
         function sideBarOutsideClick(event) {
-            if (event.target.classList.contains('deleteUser')) {
-
-            }
+            if (event.target.classList.contains('deleteUser')) { }
             else if (!fullSideBar.contains(event.target) && fullSideBar !== event.target) {
                 closeSideBar(fullSideBar);
             }
@@ -110,12 +108,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
             });
         });
 
-        deleteButton.addEventListener('click', function () {
+        deleteButton.addEventListener('click', function (event) {
             sidebar.removeChild(newElement);
             sidebar.removeChild(deleteButton);
+            resetNamesPlacesSideBar(sidebar, event);
         });
         sidebar.appendChild(newElement); 
         sidebar.appendChild(deleteButton);
+    }
+
+    function resetNamesPlacesSideBar() {
+        let users = Array.from(document.querySelectorAll('.users'));
+        let deleteButtons = Array.from(document.querySelectorAll('.deleteUser'));
+        let addButton = document.querySelector('.addUsersSideBar');
+
+        for (let i = 0; i <= users.length; i++) {
+            if (i == users.length) {
+                addButton.style.top = `${5 * i + 20}%`; // Originally, the first button appear at 20%
+            } else if (i < users.length - 1 ) { // -1 Because there is one less removal button;
+                users[i].style.top = `${5 * i + 20}%`;
+                deleteButtons[i].style.top = `${5 * i + 25}%`;
+            } else { users[i].style.top = `${5 * i + 20}%`; }
+        }
+
     }
 
     function moveElementDown(element) {
