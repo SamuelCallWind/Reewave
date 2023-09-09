@@ -41,7 +41,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function displaySideBar(e) {
         
         function sideBarOutsideClick(event) {
-            if (!fullSideBar.contains(event.target) && fullSideBar !== event.target) {
+            if (event.target.classList.contains('deleteUser')) {
+
+            }
+            else if (!fullSideBar.contains(event.target) && fullSideBar !== event.target) {
                 closeSideBar(fullSideBar);
             }
             document.removeEventListener('click', sideBarOutsideClick);
