@@ -29,11 +29,23 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 70vh;
-    width: 80vw;
-    background-color: blue;
+    height: 35vh;
+    width: 40vw;
+    background-color: white;
+    border: rgb(231, 180, 115) 3px solid;
     z-index: 10;
     border-radius: 10px;
+}
+.namePopUp > label {
+    margin-top: -10%;
+    font-size: 2rem;
+}
+.namePopUp > button, .namePopUp > input {
+    margin: 2%;
+    width: 40%;
+}
+.namePopUp > input {
+
 }
 .blur {
     filter: blur(5px);

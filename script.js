@@ -52,7 +52,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
         let fullSideBar = document.querySelector('.sideBar');
-        let users = document.createElement('div');
         let addUsersButton = document.createElement('div');
         let returnButton = document.querySelector('.arrow');
         fullSideBar.style.width = '40%';
@@ -60,7 +59,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             closeSideBar(fullSideBar);
         });
         
-        users.classList.add('users');
         addUsersButton.classList.add('addUsersSideBar');
         addUsersButton.textContent =  '+'; 
         addUsersButton.addEventListener('click', function (event) {
@@ -68,7 +66,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             createUsersElement(addUsersButton);
             moveElementDown(addUsersButton);
         });
-        fullSideBar.appendChild(users);
         fullSideBar.appendChild(addUsersButton);
         e.stopPropagation()
     }
@@ -152,7 +149,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let children = fullSideBar.querySelectorAll('.users');
         fullSideBar.style.width = '0%';
         setTimeout(function () {
-            for (let i = 0; i < children.length; i++) {
+            for (let i = 1; i < children.length; i++) {
                 children[i].remove();
                 let deleteButton = fullSideBar.querySelector('.deleteUser');
                 if (deleteButton) {
@@ -166,12 +163,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function saveUserName() {
-        let username = document.querySelector('.submitName');
+        let username = document.getElementById('nameInput').value;
         let section = document.querySelector('section.popUp');
-        let body = document.body
+        let firstUser = document.querySelector('section div.users');
+        let body = document.body;
 
         document.querySelectorAll('.blur').forEach(element => element.classList.remove('blur'));
         body.removeChild(section);
+        firstUser.textContent = username;
     }
     document.querySelector('.submitName').addEventListener('click', function (event) {
         event.preventDefault();
