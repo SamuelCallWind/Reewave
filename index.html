@@ -12,7 +12,14 @@
 
 </head>
 <body>
-    <header>
+    <section class="popUp">
+        <form class="namePopUp">
+            <label for="name" >Enter a name</label>
+            <input type="text" minlength="1" required>
+            <button type="submit" class="submitName">Submit</button>
+        </form>
+    </section>
+    <header class="blur">
         <img class="logo" alt="logo" src="/images/logo.png">
         <ul class="linksTop">
             <!-- Will have to change these links to do something informative
@@ -28,7 +35,7 @@
         <section class="sideBar">
             <img src="images/arrow.png" class="arrow" alt="arrow to return to main page">
         </section>
-        <section class="calendar">
+        <section class="calendar blur">
             <div class="calendarGrid">
                 <div class="boxDay box1"></div>
                 <div class="boxDay box2"></div>

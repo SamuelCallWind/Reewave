@@ -16,8 +16,29 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
-
+.popUp {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.namePopUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 80vw;
+    background-color: blue;
+    z-index: 10;
+    border-radius: 10px;
+}
+.blur {
+    filter: blur(5px);
+    pointer-events: none;
+}
 header {
     height: 100px;
     width: 100%;
@@ -114,7 +135,7 @@ to look smoother. Need to implement the return if user stops hovering */
     line-height: 140%;
     background-color: rgba(0, 84, 157, 0.424);
     border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, top .3s ease;
     cursor: pointer;
     animation: popOpening ease-in-out 0.5s;
 }
@@ -138,6 +159,9 @@ to look smoother. Need to implement the return if user stops hovering */
 .deleteUser {
     position: absolute;
     left: 5%;
+    width: 30%;
+    font-size: .9em;
+    transition: top .25s ease-in-out;
 }
 
 .calendar {
@@ -531,6 +555,9 @@ to look smoother. Need to implement the return if user stops hovering */
     .errorMessage {
         font-size: 2.5vw;
     }
+    .deleteUser {
+        font-size: .5em;
+    }
 }
 @media (max-width: 485px) {
     .calendarGrid {
@@ -588,11 +615,3 @@ to look smoother. Need to implement the return if user stops hovering */
     to {opacity: 1; }
 }
 
-@keyframes popOpening {
-    0% {
-        width: 0%;
-    }
-    100% {
-        width: 50%;
-    }
-}
