@@ -73,6 +73,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         e.stopPropagation()
     }
 
+
     function createUsersElement(element) {
         let rect = element.getBoundingClientRect();
         let newElement = document.createElement('div');
@@ -164,7 +165,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }, 500);
     }
 
+    function saveUserName() {
+        let username = document.querySelector('.submitName');
+        let section = document.querySelector('section.popUp');
+        let body = document.body
 
+        document.querySelectorAll('.blur').forEach(element => element.classList.remove('blur'));
+        body.removeChild(section);
+    }
+    document.querySelector('.submitName').addEventListener('click', function (event) {
+        event.preventDefault();
+        saveUserName();
+    });
 
     function createEveryDayBox() {
         for (i = 0; i < daysInMonth; i++) {
