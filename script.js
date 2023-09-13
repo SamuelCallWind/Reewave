@@ -59,14 +59,17 @@ window.addEventListener('DOMContentLoaded', (event) => {
             closeSideBar(fullSideBar);
         });
         
-        addUsersButton.classList.add('addUsersSideBar');
-        addUsersButton.textContent =  '+'; 
-        addUsersButton.addEventListener('click', function (event) {
-            event.stopPropagation();
-            createUsersElement(addUsersButton);
-            moveElementDown(addUsersButton);
-        });
+        if (!document.querySelector('.addUsersSideBar')) {
+            let addUsersButton = document.createElement('div');
+            addUsersButton.classList.add('addUsersSideBar');
+            addUsersButton.textContent =  '+'; 
+            addUsersButton.addEventListener('click', function (event) {
+                event.stopPropagation();
+                createUsersElement(addUsersButton);
+                moveElementDown(addUsersButton);
+            });
         fullSideBar.appendChild(addUsersButton);
+        }
         e.stopPropagation()
     }
 
@@ -148,18 +151,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
     function closeSideBar(fullSideBar) {
         let children = fullSideBar.querySelectorAll('.users');
         fullSideBar.style.width = '0%';
-        setTimeout(function () {
-            for (let i = 1; i < children.length; i++) {
-                children[i].remove();
-                let deleteButton = fullSideBar.querySelector('.deleteUser');
-                if (deleteButton) {
-                    fullSideBar.removeChild(deleteButton);
-                }
-            }
-            if (document.querySelector('.addUsersSideBar')) {
-                document.querySelector('.addUsersSideBar').remove();
-            }
-        }, 500);
+        // setTimeout(function () {
+        //     for (let i = 1; i < children.length; i++) {
+        //         children[i].remove();
+        //         let deleteButton = fullSideBar.querySelector('.deleteUser');
+        //         if (deleteButton) {
+        //             fullSideBar.removeChild(deleteButton);
+        //         }
+        //     }
+        //     if (document.querySelector('.addUsersSideBar')) {
+        //         document.querySelector('.addUsersSideBar').remove();
+        //     }
+        // }, 500);
     }
 
     function saveUserName() {
