@@ -79,18 +79,22 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let newElement = document.createElement('div');
         let sidebar = document.querySelector('.sideBar');
         let deleteButton = document.createElement('button');
+        let renameButton = document.createElement('button');
 
         deleteButton.classList.add('deleteUser');
         deleteButton.style.top = rect.top + 'px';
-        deleteButton.textContent = 'Remove';
+        deleteButton.textContent = 'X';
+
+        renameButton.classList.add('renameUser');
+        renameButton.textContent = 'Rename';
+        renameButton.style.top = rect.top + 'px';
+        renameButton.style.left = '20%';
 
         newElement.classList.add('users');
         newElement.style.position = 'absolute';
         newElement.style.top = rect.top + 'px';
         newElement.style.right = '5%';
-        setTimeout(function () {
-            newElement.textContent = 'Add a name';
-        }, 400);
+        newElement.textContent = 'Add a name';
         
 
         newElement.addEventListener('click', function (event) {
@@ -112,16 +116,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
         deleteButton.addEventListener('click', function (event) {
             sidebar.removeChild(newElement);
             sidebar.removeChild(deleteButton);
+            sidebar.removeChild(renameButton);
             resetNamesPlacesSideBar(sidebar, event);
         });
         sidebar.appendChild(newElement); 
         sidebar.appendChild(deleteButton);
+        sidebar.appendChild(renameButton);
     }
 
     function resetNamesPlacesSideBar() {
         let users = Array.from(document.querySelectorAll('.users'));
         let deleteButtons = Array.from(document.querySelectorAll('.deleteUser'));
         let addButton = document.querySelector('.addUsersSideBar');
+        let renameButtons = Array.from(document.querySelectorAll('.renameUser'));
 
         for (let i = 0; i <= users.length; i++) {
             if (i == users.length) {
@@ -129,6 +136,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             } else if (i < users.length - 1 ) { // -1 Because there is one less removal button;
                 users[i].style.top = `${5 * i + 20}%`;
                 deleteButtons[i].style.top = `${5 * i + 25}%`;
+                renameButtons[i].style.top = `${5 * i + 25}%`;
             } else { users[i].style.top = `${5 * i + 20}%`; }
         }
 
