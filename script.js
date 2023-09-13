@@ -171,11 +171,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let firstUser = document.querySelector('section div.users');
         let body = document.body;
 
-        document.querySelectorAll('.blur').forEach(element => element.classList.remove('blur'));
-        body.removeChild(section);
-        firstUser.textContent = username;
+        if (username.length >= 1) {
+            document.querySelectorAll('.blur').forEach(element => element.classList.remove('blur'));
+            body.removeChild(section);
+            firstUser.textContent = username;
+        }
     }
-    document.querySelector('.submitName').addEventListener('click', function (event) {
+    document.querySelector('.namePopUp').addEventListener('submit', function (event) {
         event.preventDefault();
         saveUserName();
     });
